@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "812903319233",
+    "firebase_url": "https://drug-bce44.firebaseio.com",
+    "project_id": "drug-bce44",
+    "storage_bucket": "drug-bce44.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:812903319233:android:f34cf24e40fd04609eb640",
+        "android_client_info": {
+          "package_name": "com.example.medi1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "812903319233-glfbp6qclg7snq2e220tc86sjhhe8lga.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.medi1",
+            "certificate_hash": "ba96d3ff5c0a639daf0dad07dbde2e0ef3a9186f"
+          }
+        },
+        {
+          "client_id": "812903319233-7tt4u7b7ti47ga9khs33beh8o5gl74ja.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRkkWOKP6Cqv_B6l2CV4czawAkVS1_fLM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "812903319233-7tt4u7b7ti47ga9khs33beh8o5gl74ja.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
