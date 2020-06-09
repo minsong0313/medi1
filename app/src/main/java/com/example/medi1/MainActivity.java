@@ -2,6 +2,8 @@ package com.example.medi1;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,20 +17,20 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Button.OnClickListener{
     private static final String TAG="Ma";
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
 
     Gson gson = new Gson();
+
     ///////////////////////////색상 버튼////////////////////////////
-    public String color = null; //색상 저장
+    public String choosecolor = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         recyclerView=findViewById(R.id.rv_recyclerview);
 
         try{
@@ -36,28 +38,74 @@ public class MainActivity extends AppCompatActivity {
             byte[] buffer = new byte[is.available()];
             is.read(buffer);
             is.close();
+
             String json = new String(buffer, "UTF-8");
 
             JSONObject jsonObject = new JSONObject(json);
 
-            Map<String,Object> boxOfficeResult= gson.fromJson( jsonObject.get("boxOfficeResult").toString(),new TypeToken<Map<String, Object>>(){}.getType());
 
-            ArrayList<Map<String, Object>> jsonList = (ArrayList) boxOfficeResult.get("Drug");
+            Map<String,Object> Drug= gson.fromJson( jsonObject.get("Drug").toString(),new TypeToken<Map<String, Object>>(){}.getType());
+            ArrayList<Map<String, Object>> jsonList = (ArrayList) Drug.get("druglist");
+
 
             mAdapter=new DrugAdapter(jsonList);
+
+            //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ//
+            Button buttonWhite = (Button)findViewById(R.id.buttonWhite);
+            buttonWhite.setOnClickListener(this);
+            Button buttonGreen = (Button)findViewById(R.id.buttonGreen);
+            buttonGreen.setOnClickListener(this);
+            Button buttonYellow = (Button)findViewById(R.id.buttonYellow);
+            buttonYellow.setOnClickListener(this);
 
         }catch (Exception e){e.printStackTrace();}
 
     }//onCreate()..
+
+    /////////////////////////////////색상 버튼 리스너 //////////////////////
 
 
     public void click_btn(View view) {
         recyclerView.setAdapter(mAdapter);
     }
 
-    //하양색 버튼을 눌러 색상이 하양인것을 출력하기
-    public void whiteclick(View view) {
-        color = "하양";
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @Override
+    public void onClick(View v) {
+        TextView textView = (TextView) findViewById(R.id.result);
+        switch (v.getId()){
+            case R.id.buttonWhite:
+                choosecolor="하양";
+                textView.setText(choosecolor);
+                break;
+            case R.id.buttonGreen:
+                choosecolor="초록";
+                textView.setText(choosecolor);
+                break;
+            case R.id.buttonYellow:
+                choosecolor="노랑";
+                textView.setText(choosecolor);
+                break;
+                ////나머지 색 표시하기 성공하면.....
+        }
     }
 }

@@ -14,9 +14,11 @@ import java.util.Map;
 public class DrugAdapter extends RecyclerView.Adapter<DrugAdapter.MyViewHolder> {
     private ArrayList<Map<String, Object>> items= new ArrayList<Map<String, Object>>();
 
+
     public DrugAdapter(ArrayList<Map<String, Object>> resultList){
        this.items=resultList;
     }
+
 
     @NonNull
     @Override
@@ -41,20 +43,27 @@ public class DrugAdapter extends RecyclerView.Adapter<DrugAdapter.MyViewHolder> 
         public TextView name, image, shape, color;
         public MyViewHolder(View itemView) {
             super(itemView);
-            name=itemView.findViewById(R.id.name);
-            image=itemView.findViewById(R.id.image);
-            shape=itemView.findViewById(R.id.shape);
-            color=itemView.findViewById(R.id.color);
-
+                name = itemView.findViewById(R.id.name);
+                image = itemView.findViewById(R.id.image);
+                shape = itemView.findViewById(R.id.shape);
+                color = itemView.findViewById(R.id.color);
         }
-        public void setItem(Map<String, Object> item){
+
+        public void setItem(Map<String, Object> item) {
 
             //"rank", "movieNm", "openDt"은 Json파일에 저장되어 있던 key값
-            name.setText(item.get("name").toString());
-            image.setText(item.get("image").toString());
-            shape.setText(item.get("shape").toString());
-            color.setText(item.get("color").toString());
+            String nameString = (String) item.get("품목명");
+            String imagetring = (String) item.get("큰제품이미지");
+            String shapeString = (String) item.get("의약품제형");
+            String colorString = (String) item.get("색상앞");
+
+                name.setText(nameString);
+                image.setText(imagetring);
+                shape.setText(shapeString);
+                color.setText(colorString);
 
         }
+
+
     }
 }

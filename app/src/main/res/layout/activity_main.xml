@@ -25,14 +25,15 @@
         android:orientation="horizontal">
 
     <Button
+        android:id="@+id/buttonWhite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="whiteclick"
         android:text="하양"
         android:textSize="12sp">
     </Button>
 
         <Button
+            android:id="@+id/buttonGreen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="초록"
@@ -40,6 +41,7 @@
         </Button>
 
         <Button
+            android:id="@+id/buttonYellow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="노랑"
