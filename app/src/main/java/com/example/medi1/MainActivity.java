@@ -15,6 +15,7 @@ import org.json.JSONObject;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements Button.OnClickListener{
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
     private RecyclerView.Adapter mAdapter;
 
     Gson gson = new Gson();
+
+
 
     ///////////////////////////색상 버튼////////////////////////////
     public String choosecolor = null;
@@ -38,15 +41,18 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
             byte[] buffer = new byte[is.available()];
             is.read(buffer);
             is.close();
-
             String json = new String(buffer, "UTF-8");
 
             JSONObject jsonObject = new JSONObject(json);
 
+            String jsonValue = jsonObject.getString("색상앞");
+            JSONObject jsonObject1 = new JSONObject(jsonValue);
+            Iterator i = jsonObject1.keys();
 
-            Map<String,Object> Drug= gson.fromJson( jsonObject.get("Drug").toString(),new TypeToken<Map<String, Object>>(){}.getType());
+           Map<String,Object> Drug= gson.fromJson( jsonObject.get("Drug").toString(),new TypeToken<Map<String, Object>>(){}.getType());
+
+
             ArrayList<Map<String, Object>> jsonList = (ArrayList) Drug.get("druglist");
-
 
             mAdapter=new DrugAdapter(jsonList);
 
@@ -62,28 +68,48 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
 
     }//onCreate()..
 
-    /////////////////////////////////색상 버튼 리스너 //////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public void click_btn(View view) {
         recyclerView.setAdapter(mAdapter);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -105,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
                 choosecolor="노랑";
                 textView.setText(choosecolor);
                 break;
-                ////나머지 색 표시하기 성공하면.....
+            ////나머지 색 표시하기 성공하면.....
         }
     }
 }

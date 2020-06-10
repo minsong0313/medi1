@@ -7,6 +7,13 @@ public class Drug {
     private String shape;
     private String color;
 
+    public Drug(String name, String image, String shape, String color) {
+        this.name = name;
+        this.image = image;
+        this.shape = shape;
+        this.color = color;
+    }
+
     public String getName() {
         return name;
     }

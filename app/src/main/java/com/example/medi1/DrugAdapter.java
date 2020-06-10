@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class DrugAdapter extends RecyclerView.Adapter<DrugAdapter.MyViewHolder> {
-    private ArrayList<Map<String, Object>> items= new ArrayList<Map<String, Object>>();
 
+    private ArrayList<Map<String, Object>> items= new ArrayList<Map<String, Object>>();
 
     public DrugAdapter(ArrayList<Map<String, Object>> resultList){
        this.items=resultList;
@@ -51,19 +51,23 @@ public class DrugAdapter extends RecyclerView.Adapter<DrugAdapter.MyViewHolder> 
 
         public void setItem(Map<String, Object> item) {
 
-            //"rank", "movieNm", "openDt"은 Json파일에 저장되어 있던 key값
+            //Json파일에 저장되어 있던 key값
             String nameString = (String) item.get("품목명");
             String imagetring = (String) item.get("큰제품이미지");
             String shapeString = (String) item.get("의약품제형");
             String colorString = (String) item.get("색상앞");
 
+            if(colorString.equals("하양")) {
+
                 name.setText(nameString);
                 image.setText(imagetring);
                 shape.setText(shapeString);
                 color.setText(colorString);
-
+            }
         }
 
 
     }
+
+
 }
