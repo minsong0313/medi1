@@ -57,17 +57,13 @@ public class DrugAdapter extends RecyclerView.Adapter<DrugAdapter.MyViewHolder> 
             String shapeString = (String) item.get("의약품제형");
             String colorString = (String) item.get("색상앞");
 
-            if(colorString.equals("하양")) {
-
                 name.setText(nameString);
                 image.setText(imagetring);
                 shape.setText(shapeString);
                 color.setText(colorString);
-            }
+
         }
 
-
     }
-
 
 }
