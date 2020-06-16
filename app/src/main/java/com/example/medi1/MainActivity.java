@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
 
             JSONObject jsonObject = new JSONObject(json);
 
-            String jsonValue = jsonObject.getString("색상앞");
          //   JSONObject jsonObject1 = new JSONObject(jsonValue);
 
             Map<String,Object> Drug= gson.fromJson( jsonObject.get("Drug").toString(),new TypeToken<Map<String, Object>>(){}.getType());
