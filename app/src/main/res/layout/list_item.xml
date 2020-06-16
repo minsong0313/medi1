@@ -11,7 +11,7 @@
         android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/icon"
+        android:id="@+id/image"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_margin="5dp"/>
@@ -31,7 +31,7 @@
                 tools:text="약품명" />
 
             <TextView
-                android:id="@+id/image"
+                android:id="@+id/imageText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"

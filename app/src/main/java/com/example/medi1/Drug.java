@@ -1,18 +1,14 @@
 package com.example.medi1;
 
 
+import android.graphics.Bitmap;
+
 public class Drug {
     private String name;
     private String image;
     private String shape;
     private String color;
 
-    public Drug(String name, String image, String shape, String color) {
-        this.name = name;
-        this.image = image;
-        this.shape = shape;
-        this.color = color;
-    }
 
     public String getName() {
         return name;
