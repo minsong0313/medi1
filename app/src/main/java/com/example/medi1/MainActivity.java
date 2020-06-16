@@ -55,46 +55,6 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         setContentView(R.layout.activity_main);
         recyclerView = findViewById(R.id.rv_recyclerview);
 
-        try{
-            InputStream is = getAssets().open("druglist3.json");
-            byte[] buffer = new byte[is.available()];
-            is.read(buffer);
-            is.close();
-            String json = new String(buffer, "UTF-8");
-
-            JSONObject jsonObject = new JSONObject(json);
-
-
-            JSONArray jsonArray = jsonObject.getJSONArray("druglist");
-
-             list = new ArrayList<>();
-
-            for(int i=0; i<jsonArray.length(); i++){
-                jsonObject = jsonArray.getJSONObject(i);
-               // list.add(jsonObject.getString("품목명")+jsonObject.getString("색상앞")+jsonObject.getString("의약품제형")+jsonObject.getString("큰제품이미지"));
-                if(jsonObject.getString("색상앞").equals("하양")){
-                    Drug drug = new Drug();
-                    Log.e("druglist : ", jsonObject.getString("품목명")+jsonObject.getString("색상앞")+jsonObject.getString("의약품제형")+jsonObject.getString("큰제품이미지"));
-                    drug.setColor(jsonObject.getString("색상앞"));
-                    drug.setImage(jsonObject.getString("큰제품이미지"));
-                    drug.setName(jsonObject.getString("품목명"));
-                    drug.setShape(jsonObject.getString("의약품제형"));
-
-                    list.add(drug);
-                }
-            }
-
-
-/*
-            Map<String,Object> Drug= gson.fromJson( jsonObject.get("Drug").toString(),new TypeToken<Map<String, Object>>(){}.getType());
-            ArrayList<Map<String, Object>> jsonList = (ArrayList) Drug.get("druglist");
-
-            mAdapter = new DrugAdapter(jsonList);
-
- */
-
-            //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ//
-        }catch (Exception e){e.printStackTrace();}
 
 
         Button buttonWhite = (Button) findViewById(R.id.buttonWhite);
@@ -107,22 +67,61 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
 
     //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ//
 
+    public void openJson(){
+        try{
+            InputStream is = getAssets().open("druglist3.json");
+            byte[] buffer = new byte[is.available()];
+            is.read(buffer);
+            is.close();
+            String json = new String(buffer, "UTF-8");
 
+            JSONObject jsonObject = new JSONObject(json);
+
+
+            JSONArray jsonArray = jsonObject.getJSONArray("druglist");
+
+            list = new ArrayList<>();
+
+            for(int i=0; i<jsonArray.length(); i++){
+                jsonObject = jsonArray.getJSONObject(i);
+                // list.add(jsonObject.getString("품목명")+jsonObject.getString("색상앞")+jsonObject.getString("의약품제형")+jsonObject.getString("큰제품이미지"));
+                if(jsonObject.getString("색상앞").equals(choosecolor)){
+                    Drug drug = new Drug();
+                    Log.e("druglist : ", jsonObject.getString("품목명")+jsonObject.getString("색상앞")+jsonObject.getString("의약품제형")+jsonObject.getString("큰제품이미지"));
+                    drug.setColor(jsonObject.getString("색상앞"));
+                    drug.setImage(jsonObject.getString("큰제품이미지"));
+                    drug.setName(jsonObject.getString("품목명"));
+                    drug.setShape(jsonObject.getString("의약품제형"));
+
+                    list.add(drug);
+                }
+            }
+
+
+    /*
+                Map<String,Object> Drug= gson.fromJson( jsonObject.get("Drug").toString(),new TypeToken<Map<String, Object>>(){}.getType());
+                ArrayList<Map<String, Object>> jsonList = (ArrayList) Drug.get("druglist");
+
+                mAdapter = new DrugAdapter(jsonList);
+
+     */
+
+            //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ//
+        }catch (Exception e){e.printStackTrace();}
+
+    }
     @Override
     public void onClick(View v) {
         TextView textView = (TextView) findViewById(R.id.result);
         switch (v.getId()){
             case R.id.buttonWhite:
                 choosecolor="하양";
-                textView.setText(choosecolor);
                 break;
             case R.id.buttonGreen:
                 choosecolor="초록";
-                textView.setText(choosecolor);
                 break;
             case R.id.buttonYellow:
                 choosecolor="노랑";
-                textView.setText(choosecolor);
                 break;
             ////나머지 색 표시하기 성공하면.....
         }
@@ -130,6 +129,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
 
 
     public void click_btn(View view) {
+        openJson();
         mAdapter = new MyAdapter(getApplicationContext(), list);
         recyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
