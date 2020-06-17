@@ -4,10 +4,18 @@ package com.example.medi1;
 import android.graphics.Bitmap;
 
 public class Drug {
-    private String name;
-    private String image;
-    private String shape;
-    private String color;
+    //리스트에 띄울 목록
+    private String name; //품목명
+    private String company; // 업소명
+    private String image;//이미지 주소
+    private String category; //분류명
+    private String progen; // 전문일반구분
+
+    //검색할때 사용, 리스트에 띄우지 않음
+    private String shape; //모양
+    private String color; //색상
+    private String type; //제형
+    private String spline; //분할선
 
 
     public String getName() {
@@ -42,4 +50,43 @@ public class Drug {
         this.color = color;
     }
 
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getProgen() {
+        return progen;
+    }
+
+    public void setProgen(String progen) {
+        this.progen = progen;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getSpline() {
+        return spline;
+    }
+
+    public void setSpline(String spline) {
+        this.spline = spline;
+    }
 }
