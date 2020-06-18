@@ -15,7 +15,9 @@ public class Drug {
     private String shape; //모양
     private String color; //색상
     private String type; //제형
-    private String spline; //분할선
+    private String markfront; // 식별 표시 앞
+    private String markback; // 식별 표시 뒤
+
 
 
     public String getName() {
@@ -82,11 +84,19 @@ public class Drug {
         this.type = type;
     }
 
-    public String getSpline() {
-        return spline;
+    public String getMarkfront() {
+        return markfront;
     }
 
-    public void setSpline(String spline) {
-        this.spline = spline;
+    public void setMarkfront(String markfront) {
+        this.markfront = markfront;
+    }
+
+    public String getMarkback() {
+        return markback;
+    }
+
+    public void setMarkback(String markback) {
+        this.markback = markback;
     }
 }

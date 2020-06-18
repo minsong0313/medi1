@@ -1,5 +1,6 @@
 package com.example.medi1;
 
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -34,29 +35,27 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
+
 public class MainActivity extends AppCompatActivity implements Button.OnClickListener {
     private static final String TAG = "Ma";
-    private RecyclerView recyclerView;
-    private MyAdapter mAdapter;
-    ArrayList<Drug> list = null;
 
-    Gson gson = new Gson();
 
-    public String choosecolor = null; // 선택한 색상 저장
-    public String chooseshape = null; // 선택한 모양 저장
-    public String choosetype = null; // 선택한 제형 저장
-    public String searchmark = null; // 선택한 분할선 저장
 
-    public String name;
-    public String shape;
-    public String type;
-    public String spline;
+
+    private String choosecolor = null; // 선택한 색상 저장
+    private String chooseshape = null; // 선택한 모양 저장
+    private String choosetype = null; // 선택한 제형 저장
+    private String searchmarkfront = null; // 식별자 검색 저장(앞)
+    private String searchmarkback = null; // 식별자 검색 저장(뒤)
+
+
+
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        recyclerView = findViewById(R.id.rv_recyclerview);
 
         //색상 버튼 초기화
         Button buttonWhite = (Button) findViewById(R.id.buttonWhite);
@@ -130,40 +129,6 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
     //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ//
 
     //조건 버튼 누른 후 조건에 맞는 의약품 검색 실행
-    public void openJson(){
-        try{
-            InputStream is = getAssets().open("druglist_final.json"); //assests파일에 저장된 druglist_final.json 파일 열기
-            byte[] buffer = new byte[is.available()];
-            is.read(buffer);
-            is.close();
-            String json = new String(buffer, "UTF-8");
-
-            JSONObject jsonObject = new JSONObject(json);
-            JSONArray jsonArray = jsonObject.getJSONArray("druglist"); //json파일에서 의약품리스트의 배열명, jsonArray로 저장
-
-            list = new ArrayList<>();
-
-            for(int i=0; i<jsonArray.length(); i++){
-                jsonObject = jsonArray.getJSONObject(i);
-                // list.add(jsonObject.getString("품목명")+jsonObject.getString("색상앞")+jsonObject.getString("의약품제형")+jsonObject.getString("큰제품이미지"));
-                if(choosecolor.equals(jsonObject.getString("색상앞")) && chooseshape.equals(jsonObject.getString("의약품제형")) && choosetype.contains(jsonObject.getString("제형코드명"))){
-                    Drug drug = new Drug();
-                    Log.e("druglist : ", jsonObject.getString("품목명")+jsonObject.getString("색상앞")+jsonObject.getString("의약품제형")+jsonObject.getString("큰제품이미지"));
-                    drug.setColor(jsonObject.getString("색상앞"));
-                    drug.setImage(jsonObject.getString("큰제품이미지"));
-                    drug.setName(jsonObject.getString("품목명"));
-                    drug.setShape(jsonObject.getString("의약품제형"));
-                    drug.setType(jsonObject.getString("제형코드명"));
-
-                    list.add(drug);
-                }
-
-            }
-
-            //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ//
-        }catch (Exception e){e.printStackTrace();}
-
-    }
 
     //조건 버튼 함수
     @Override
@@ -273,12 +238,14 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
 
 
 
-
+    //검색 결과 버튼
     public void click_btn(View view) {
-        openJson();
-        mAdapter = new MyAdapter(getApplicationContext(), list);
-        recyclerView.setAdapter(mAdapter);
-        mAdapter.notifyDataSetChanged();
+        Intent intent = new Intent(getApplicationContext(),SearchList.class);
+        intent.putExtra("choosecolor",choosecolor);
+        intent.putExtra("chooseshape",chooseshape);
+        intent.putExtra("choosetype",choosetype);
+
+        startActivity(intent.addFlags(FLAG_ACTIVITY_NEW_TASK));
     }
 
 
