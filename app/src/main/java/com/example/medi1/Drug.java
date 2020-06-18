@@ -9,7 +9,7 @@ public class Drug {
     private String company; // 업소명
     private String image;//이미지 주소
     private String category; //분류명
-    private String progen; // 전문일반구분
+    private String mark; // 전문일반구분
 
     //검색할때 사용, 리스트에 띄우지 않음
     private String shape; //모양
@@ -66,12 +66,12 @@ public class Drug {
         this.category = category;
     }
 
-    public String getProgen() {
-        return progen;
+    public String getMark() {
+        return mark;
     }
 
-    public void setProgen(String progen) {
-        this.progen = progen;
+    public void setMark(String mark) {
+        this.mark = mark;
     }
 
     public String getType() {

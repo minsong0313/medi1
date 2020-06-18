@@ -44,8 +44,8 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
 
     public String choosecolor = null; // 선택한 색상 저장
     public String chooseshape = null; // 선택한 모양 저장
-    public String chooosetype = null; // 선택한 제형 저장
-    public String choosespline = null; // 선택한 분할선 저장
+    public String choosetype = null; // 선택한 제형 저장
+    public String searchmark = null; // 선택한 분할선 저장
 
     public String name;
     public String shape;
@@ -115,6 +115,16 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         buttonOctagon.setOnClickListener(this);
         Button buttonEct = (Button) findViewById(R.id.buttonEct);
         buttonEct.setOnClickListener(this);
+
+        //제형 버튼 초기화
+        Button buttonTablet = (Button) findViewById(R.id.buttonTablet);
+        buttonTablet.setOnClickListener(this);
+        Button buttonHardcapsule = (Button) findViewById(R.id.buttonHardcapsule);
+        buttonHardcapsule.setOnClickListener(this);
+        Button buttonSoftcapsul = (Button) findViewById(R.id.buttonSoftcapsul);
+        buttonSoftcapsul.setOnClickListener(this);
+        Button buttonEct2 = (Button) findViewById(R.id.buttonEct2);
+        buttonEct2.setOnClickListener(this);
     }
 
     //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ//
@@ -136,13 +146,14 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
             for(int i=0; i<jsonArray.length(); i++){
                 jsonObject = jsonArray.getJSONObject(i);
                 // list.add(jsonObject.getString("품목명")+jsonObject.getString("색상앞")+jsonObject.getString("의약품제형")+jsonObject.getString("큰제품이미지"));
-                if(jsonObject.getString("색상앞").equals(choosecolor) && jsonObject.getString("의약품제형").equals(chooseshape)){
+                if(choosecolor.equals(jsonObject.getString("색상앞")) && chooseshape.equals(jsonObject.getString("의약품제형")) && choosetype.contains(jsonObject.getString("제형코드명"))){
                     Drug drug = new Drug();
                     Log.e("druglist : ", jsonObject.getString("품목명")+jsonObject.getString("색상앞")+jsonObject.getString("의약품제형")+jsonObject.getString("큰제품이미지"));
                     drug.setColor(jsonObject.getString("색상앞"));
                     drug.setImage(jsonObject.getString("큰제품이미지"));
                     drug.setName(jsonObject.getString("품목명"));
                     drug.setShape(jsonObject.getString("의약품제형"));
+                    drug.setType(jsonObject.getString("제형코드명"));
 
                     list.add(drug);
                 }
@@ -241,6 +252,20 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
                 break;
             case R.id.buttonEct:
                 chooseshape="기타";
+                break;
+
+            //////////제형//////////
+            case R.id.buttonTablet:
+                choosetype="나정, 필름코팅정, 서방정, 저작정, 구강붕해정, 장용성필름코팅정, 다층정";
+                break;
+            case R.id.buttonHardcapsule:
+                choosetype="경질캡슐제|산제, 경질캡슐제|과립제, 경질캡슐제|장용성과립제";
+                break;
+            case R.id.buttonSoftcapsul:
+                choosetype="연질캡슐제|현탁상, 연질캡슐제|액상";
+                break;
+            case R.id.buttonEct2:
+                choosetype="껌제";
                 break;
 
         }

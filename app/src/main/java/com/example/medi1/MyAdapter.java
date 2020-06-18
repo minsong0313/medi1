@@ -52,6 +52,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
         holder.name.setText(mList.get(position).getName());
         holder.shape.setText(mList.get(position).getShape());
         holder.color.setText(mList.get(position).getColor());
+        holder.type.setText(mList.get(position).getType());
     }
 
     @Override
@@ -65,6 +66,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
         public TextView name;
         public TextView color;
         public TextView shape;
+        public TextView type;
         public View mView;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -74,6 +76,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
             color = itemView.findViewById(R.id.color);
             image = itemView.findViewById(R.id.image);
             shape = itemView.findViewById(R.id.shape);
+            type = itemView.findViewById(R.id.type);
         }
     }
 }
