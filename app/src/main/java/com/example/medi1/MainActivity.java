@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
@@ -40,7 +41,7 @@ import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 public class MainActivity extends AppCompatActivity implements Button.OnClickListener {
     private static final String TAG = "Ma";
 
-
+    //식별자 앞 edit 초기화
 
 
     private String choosecolor = null; // 선택한 색상 저장
@@ -124,13 +125,15 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         buttonSoftcapsul.setOnClickListener(this);
         Button buttonEct2 = (Button) findViewById(R.id.buttonEct2);
         buttonEct2.setOnClickListener(this);
+
+
     }
 
     //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ//
 
     //조건 버튼 누른 후 조건에 맞는 의약품 검색 실행
 
-    //조건 버튼 함수
+    //색상, 모양, 제형 버튼 클릭 함수
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -236,14 +239,41 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         }
     }
 
+    //식별자 앞 edittext값 초기화, 저장
+    public void takeMarkfront(){
+        EditText markfront = (EditText) findViewById(R.id.mark_front);
+        searchmarkfront = markfront.getText().toString();
+    }
+
+    //식별자 뒤 edittext값 초기화, 저장
+    public void takeMarkBack(){
+        EditText markback = (EditText) findViewById(R.id.mark_Back);
+        searchmarkback = markback.getText().toString();
+    }
 
 
-    //검색 결과 버튼
+    //검색 결과 버튼 -> 식별자 앞, 뒤에 입력된 값 저장된 것 가져옴, SearchList 로 intent
     public void click_btn(View view) {
+        takeMarkfront(); // 식별자 앞 edit에 입력한 텍스트값 가져오기
+        if(searchmarkfront.length() == 0){
+            searchmarkfront = "-"; // 입력된 값이 없을때 '-'로 저장
+        }else {
+            searchmarkfront=this.searchmarkfront;
+        }
+        takeMarkBack(); // 식별자 뒤 edit에 입력한 텍스트값 가져오기
+        if(searchmarkback.length() == 0){
+            searchmarkback = "-";
+        }else{
+            searchmarkback = this.searchmarkback; // 입력된 값이 없을때 '-'로 저장
+        }
+
+
         Intent intent = new Intent(getApplicationContext(),SearchList.class);
         intent.putExtra("choosecolor",choosecolor);
         intent.putExtra("chooseshape",chooseshape);
         intent.putExtra("choosetype",choosetype);
+        intent.putExtra("searchmarkfront",searchmarkfront);
+        intent.putExtra("searchmarkback", searchmarkback);
 
         startActivity(intent.addFlags(FLAG_ACTIVITY_NEW_TASK));
     }

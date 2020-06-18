@@ -96,56 +96,56 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonBluishgreen"
-                android:textSize="12sp"/>
+                android:textSize="10sp"/>
             <Button
                 android:id="@+id/buttonBlue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonBlue"
-                android:textSize="12sp"/>
+                android:textSize="10sp"/>
             <Button
                 android:id="@+id/buttonNavy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonNavy"
-                android:textSize="12sp"/>
+                android:textSize="10sp"/>
             <Button
                 android:id="@+id/buttonPurple"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonPurple"
-                android:textSize="12sp"/>
+                android:textSize="10sp"/>
             <Button
                 android:id="@+id/buttonViolet"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonViolet"
-                android:textSize="12sp"/>
+                android:textSize="10sp"/>
             <Button
                 android:id="@+id/buttonGray"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonGray"
-                android:textSize="12sp"/>
+                android:textSize="10sp"/>
             <Button
                 android:id="@+id/buttonBlack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonBlack"
-                android:textSize="12sp"/>
+                android:textSize="10sp"/>
             <Button
                 android:id="@+id/buttonTransparente"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonTransparente"
-                android:textSize="12sp"/>
+                android:textSize="10sp"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -216,44 +216,44 @@
 
             </LinearLayout>
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <Button
                     android:id="@+id/buttonRectangle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/buttonRectangle"
                     android:textSize="10sp"/>
                 <Button
                     android:id="@+id/buttonPentagon"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/buttonPentagon"
                     android:textSize="10sp"/>
                 <Button
                     android:id="@+id/buttonHexagon"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/buttonHexagon"
-                    android:textSize="12sp"/>
+                    android:textSize="10sp"/>
                 <Button
                     android:id="@+id/buttonOctagon"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/buttonOctagon"
-                    android:textSize="12sp"/>
+                    android:textSize="10sp"/>
                 <Button
                     android:id="@+id/buttonEct"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:text="@string/buttonEct"
-                    android:textSize="12sp"/>
+                    android:textSize="10sp"/>
             </LinearLayout>
     </LinearLayout>
 
@@ -346,7 +346,7 @@
                     android:text="@string/TextFront"
                     android:textSize="18sp"/>
                 <EditText
-                    android:id="@+id/Mark_front"
+                    android:id="@+id/mark_front"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -364,7 +364,7 @@
                     android:text="@string/TextBack"
                     android:textSize="18sp"/>
                 <EditText
-                    android:id="@+id/Mark_Back"
+                    android:id="@+id/mark_Back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
