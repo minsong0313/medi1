@@ -44,7 +44,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/Colorlist"
+                android:layout_marginRight="2dp"
                 android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/choosecolor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:hint="">
+            </TextView>
         </LinearLayout>
 
         <LinearLayout
@@ -52,19 +60,24 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="horizontal">
+
             <Button
                 android:id="@+id/buttonWhite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@android:color/white"
                 android:text="@string/buttonWhite"
-                android:textSize="10sp"/>
+                android:textSize="10dp" />
+
             <Button
                 android:id="@+id/buttonYellow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonYellow"
+                android:background="@android:color/white"
+
                 android:textSize="10sp"/>
             <Button
                 android:id="@+id/buttonOrange"
@@ -72,6 +85,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonOrange"
+                android:background="@android:color/white"
+
                 android:textSize="10sp"/>
             <Button
                 android:id="@+id/buttonPink"
@@ -79,6 +94,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonPink"
+                android:background="@android:color/white"
+
                 android:textSize="10sp"/>
             <Button
                 android:id="@+id/buttonRed"
@@ -86,6 +103,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonRed"
+                android:background="@android:color/white"
+
                 android:textSize="10sp"/>
             <Button
                 android:id="@+id/buttonBrown"
@@ -93,6 +112,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonBrown"
+                android:background="@android:color/white"
+
                 android:textSize="10sp"/>
             <Button
                 android:id="@+id/buttonYellowgreen"
@@ -100,6 +121,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonYellowgreen"
+                android:background="@android:color/white"
+
                 android:textSize="10sp"/>
             <Button
                 android:id="@+id/buttonGreen"
@@ -107,6 +130,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonGreen"
+                android:background="@android:color/white"
+
                 android:textSize="10sp"/>
         </LinearLayout>
         <LinearLayout
@@ -363,6 +388,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/buttonResearch"
+            android:onClick="click_research"
             android:layout_gravity="center" />
          </LinearLayout>
     </LinearLayout>

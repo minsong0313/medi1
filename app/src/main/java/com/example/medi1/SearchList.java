@@ -32,7 +32,6 @@ public class SearchList extends AppCompatActivity {
     public void onBackPressed() {
         startActivity(new Intent(getApplication(),MainActivity.class));
         super.onBackPressed();
-
     }
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -90,7 +89,6 @@ public class SearchList extends AppCompatActivity {
                         drug.setName(jsonObject.getString("품목명"));
                         drug.setShape(jsonObject.getString("의약품제형"));
                         drug.setType(jsonObject.getString("제형코드명"));
-
                         list.add(drug);
                     }
                 }
