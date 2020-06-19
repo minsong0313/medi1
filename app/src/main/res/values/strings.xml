@@ -38,9 +38,9 @@
     <string name="buttonSoftcapsul">연질캡슐</string>
     <string name="buttonEct2">기타</string>
     <!--식별자 표시 edit-->
-    <string name="Markserach">식별 표시</string>
+    <string name="Markserach">──── 식별 표시로 검색────</string>
     <string name="TextFront">식별자 앞 : </string>
     <string name="TextBack">식별자 뒤 : </string>
-
+    <string name="search">검색</string>
 
 </resources>

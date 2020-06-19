@@ -244,7 +244,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         EditText markfront = (EditText) findViewById(R.id.mark_front);
         searchmarkfront = markfront.getText().toString();
         if(searchmarkfront.length() == 0){
-            searchmarkfront = "- "; // 입력된 값이 없을때 '-'로 저장
+            searchmarkfront = "-"; // 입력된 값이 없을때 '-'로 저장
         }else {
             searchmarkfront=this.searchmarkfront;
         }
@@ -262,11 +262,8 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
     }
 
 
-    //검색 결과 버튼 -> 식별자 앞, 뒤에 입력된 값 저장된 것 가져옴, SearchList 로 intent
-    public void click_btn(View view) {
-
-        takeMarkfront(); // 식별자 앞 edit에 입력한 텍스트값 가져오기
-        takeMarkBack();
+    //검색 결과 버튼
+    public void click_result(View view) {
 
         //'색상' 카테고리만 입력됐을 때
         if(chooseshape == null && choosetype == null){
@@ -282,7 +279,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         }
         //'제형' 카테고리만 입력됐을 때
         else if(choosecolor == null && chooseshape == null){
-            choosecolor = "하양, 노랑|투명, 주황, 분홍|투명, 빨강, 갈색, 연두, 초록, 청록, 파랑, 남색, 자주, 보라, 회색, 검정, 투명";
+            choosecolor = "하양, 노랑, 주황, 분홍, 빨강, 갈색, 연두, 초록, 청록, 파랑, 남색, 자주, 보라, 회색, 검정, 투명";
             chooseshape = "원형, 타원, 반원, 삼각형, 사각형, 마름모, 장방형, 오각형, 육각형, 팔각형, 기타";
 
         }
@@ -292,12 +289,20 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         intent.putExtra("choosecolor",choosecolor);
         intent.putExtra("chooseshape",chooseshape);
         intent.putExtra("choosetype",choosetype);
+
+        startActivity(intent.addFlags(FLAG_ACTIVITY_NEW_TASK));
+    }
+
+    //식별자  검색 결과 버튼
+    public void click_markresult(View view) {
+        takeMarkfront(); // 식별자 앞 edit에 입력한 텍스트값 가져오기
+        takeMarkBack();
+
+        Intent intent = new Intent(getApplicationContext(),SearchList.class);
         intent.putExtra("searchmarkfront",searchmarkfront);
         intent.putExtra("searchmarkback", searchmarkback);
 
         startActivity(intent.addFlags(FLAG_ACTIVITY_NEW_TASK));
     }
-
-
 
 }

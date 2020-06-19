@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
+
     <!--색상 버튼-->
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/Colorlist"
-                android:textSize="25sp"/>
+                android:textSize="20sp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -164,7 +164,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Shapelist"
-                    android:textSize="25sp"/>
+                    android:textSize="20sp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -272,7 +272,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/Typelist"
-                android:textSize="25sp"/>
+                android:textSize="20sp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -311,19 +311,19 @@
         </LinearLayout>
     </LinearLayout>
 
-
+    <!--검색, 초기화버튼-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.5"
-
+        android:layout_weight="0.3"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal">
         <Button
             android:id="@+id/searchbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="검색 결과"
-            android:onClick="click_btn"
+            android:onClick="click_result"
             android:layout_gravity="center_vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginRight="120dp"
@@ -333,75 +333,85 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="검색 초기화"
-            android:onClick="click_btn"
+            android:onClick="click_result"
             android:layout_gravity="center_vertical"
             app:layout_constraintBottom_toBottomOf="parent" />
-
     </LinearLayout>
-
 
     <!--식별자 표시 Edit-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.5"
+        android:layout_marginTop="50dp"
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:layout_gravity="center_horizontal"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/Markserach"
-                android:textSize="25sp"/>
+                android:textSize="20dp"
+                android:textColor="@color/cardview_dark_background"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:weightSum="2">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/TextFront"
-                    android:textSize="18sp"/>
+                    android:textSize="15dp"/>
                 <EditText
                     android:id="@+id/mark_front"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="15sp"/>
+                <Button
+                    android:id="@+id/search_front"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/search"
+                    android:onClick="click_markresult" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/TextBack"
-                    android:textSize="18sp"/>
+                    android:textSize="15dp"/>
                 <EditText
                     android:id="@+id/mark_Back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="15sp"/>
+                <Button
+                    android:id="@+id/search_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/search"
+                    android:onClick="click_markresult" />
             </LinearLayout>
 
         </LinearLayout>
     </LinearLayout>
-
-
 </LinearLayout>
