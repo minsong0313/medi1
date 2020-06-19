@@ -305,4 +305,8 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         startActivity(intent.addFlags(FLAG_ACTIVITY_NEW_TASK));
     }
 
+    //검색초기화
+    public void click_research(View view) {
+
+    }
 }

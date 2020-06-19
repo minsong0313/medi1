@@ -1,6 +1,7 @@
 package com.example.medi1;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -28,6 +29,12 @@ public class SearchList extends AppCompatActivity {
     String searchmarkback;
 
     @Override
+    public void onBackPressed() {
+        startActivity(new Intent(getApplication(),MainActivity.class));
+        super.onBackPressed();
+
+    }
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shape_search_list);
@@ -40,7 +47,6 @@ public class SearchList extends AppCompatActivity {
         Log.e("result : ", choosecolor + "/ " + chooseshape + "/ " + choosetype + "/" + searchmarkfront + "/" + searchmarkback);
 
         if (choosecolor == null && chooseshape == null && choosetype ==null) {
-
             marksearchJson();
             Log.e("dg","식별자");
         }
@@ -94,6 +100,7 @@ public class SearchList extends AppCompatActivity {
 
     }
 
+
     //json에서 조건에 맞는 것 검색(식별자)
     public void marksearchJson(){
         try{
@@ -112,7 +119,7 @@ public class SearchList extends AppCompatActivity {
                 jsonObject = jsonArray.getJSONObject(i);
 
                 //'색상, 모양, 제형' 선택하고 검색하기(3개의 카테고리 중 하나만 선택 가능)
-                if(!searchmarkfront.equals("-")) {
+                if(!searchmarkfront.equals("-")&& searchmarkback.equals("-")) { //식별자 앞이 입력됐을 경우
                     if (searchmarkfront.equals(jsonObject.getString("표시앞")))
                     {
                         Drug drug = new Drug();
@@ -126,7 +133,21 @@ public class SearchList extends AppCompatActivity {
                         list.add(drug);
                     }
                 }
-                else  {
+                else if(!searchmarkback.equals("-") && !searchmarkfront.equals("-")){ //두개 다 입력
+                    if (searchmarkfront.equals(jsonObject.getString("표시앞")) && searchmarkback.equals(jsonObject.getString("표시뒤")))
+                    {
+                        Drug drug = new Drug();
+                        Log.e("표시 모두 : ", jsonObject.getString("품목명") + jsonObject.getString("색상앞") + jsonObject.getString("의약품제형") + jsonObject.getString("제형코드명") + jsonObject.getString("표시앞") + jsonObject.getString("표시뒤"));
+                        drug.setColor(jsonObject.getString("색상앞"));
+                        drug.setImage(jsonObject.getString("큰제품이미지"));
+                        drug.setName(jsonObject.getString("품목명"));
+                        drug.setShape(jsonObject.getString("의약품제형"));
+                        drug.setType(jsonObject.getString("제형코드명"));
+
+                        list.add(drug);
+                    }
+                }
+                else if(!searchmarkback.equals("-")) { //식별자 뒤가 입력됐을 경우
                     if (searchmarkback.equals(jsonObject.getString("표시뒤")))
                     {
                         Drug drug = new Drug();

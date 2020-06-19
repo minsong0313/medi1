@@ -7,11 +7,33 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
+    <!--상단 텍스트-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6"
+        android:background="@color/colorAccent">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="모양으로 검색"
+            android:textSize="20dp"
+            android:textColor="@color/cardview_dark_background"/>
+    </LinearLayout>
+    </LinearLayout>
+
+
     <!--색상 버튼-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:orientation="vertical">
 
         <LinearLayout
@@ -26,8 +48,9 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="horizontal">
             <Button
                 android:id="@+id/buttonWhite"
@@ -87,8 +110,9 @@
                 android:textSize="10sp"/>
         </LinearLayout>
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="horizontal">
             <Button
                 android:id="@+id/buttonBluishgreen"
@@ -153,7 +177,7 @@
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:orientation="vertical">
 
             <LinearLayout
@@ -169,7 +193,8 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:orientation="horizontal">
                 <Button
                     android:id="@+id/buttonCircle"
@@ -217,7 +242,8 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:orientation="horizontal">
                 <Button
                     android:id="@+id/buttonRectangle"
@@ -261,7 +287,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.5"
+        android:layout_weight="1.5"
         android:orientation="vertical">
 
         <LinearLayout
@@ -277,7 +303,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="horizontal">
             <Button
                 android:id="@+id/buttonTablet"
@@ -315,14 +342,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.3"
-        android:layout_marginTop="20dp"
+        android:layout_weight="0.8"
         android:orientation="horizontal">
         <Button
             android:id="@+id/searchbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="검색 결과"
+            android:text="@string/search"
             android:onClick="click_result"
             android:layout_gravity="center_vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -332,9 +358,9 @@
             android:id="@+id/researchbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="검색 초기화"
-            android:onClick="click_result"
+            android:text="@string/buttonResearch"
             android:layout_gravity="center_vertical"
+            android:onClick="click_research"
             app:layout_constraintBottom_toBottomOf="parent" />
     </LinearLayout>
 
@@ -342,14 +368,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.5"
-        android:layout_marginTop="50dp"
+        android:layout_weight="3"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
+            android:layout_marginTop="20dp"
             android:layout_gravity="center_horizontal"
             android:orientation="horizontal">
             <TextView
@@ -381,12 +406,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="15sp"/>
-                <Button
-                    android:id="@+id/search_front"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/search"
-                    android:onClick="click_markresult" />
             </LinearLayout>
 
             <LinearLayout
@@ -404,14 +423,15 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="15sp"/>
-                <Button
-                    android:id="@+id/search_back"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/search"
-                    android:onClick="click_markresult" />
             </LinearLayout>
-
+            <Button
+                android:id="@+id/search_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/search"
+                android:onClick="click_markresult" />
         </LinearLayout>
     </LinearLayout>
+
 </LinearLayout>

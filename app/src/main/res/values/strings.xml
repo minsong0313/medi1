@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">medi1</string>
+    <string name="SearchList">────모양으로 검색────</string>
     <!--색상 버튼-->
     <string name="Colorlist">색상</string>
     <string name="buttonWhite">하양</string>
@@ -42,5 +43,8 @@
     <string name="TextFront">식별자 앞 : </string>
     <string name="TextBack">식별자 뒤 : </string>
     <string name="search">검색</string>
+    <!--초기화 버튼-->
+    <string name="buttonResearch">검색 초기화</string>
+
 
 </resources>
