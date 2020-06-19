@@ -21,11 +21,11 @@
     <!--모양 버튼-->
     <string name="Shapelist">모양</string>
     <string name="buttonCircle">원형</string>
-    <string name="buttonOval">타원형</string>
-    <string name="buttonSemicircle">반원형</string>
+    <string name="buttonOval">타원</string>
+    <string name="buttonSemicircle">반원</string>
     <string name="buttonTriangle">삼각형</string>
     <string name="buttonSquare">사각형</string>
-    <string name="buttonDiamond">마름모형</string>
+    <string name="buttonDiamond">마름모</string>
     <string name="buttonRectangle">장방형</string>
     <string name="buttonPentagon">오각형</string>
     <string name="buttonHexagon">육각형</string>

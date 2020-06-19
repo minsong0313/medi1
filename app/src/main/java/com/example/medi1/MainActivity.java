@@ -192,10 +192,10 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
                 chooseshape="원형";
                 break;
             case R.id.buttonOval:
-                chooseshape="타원형";
+                chooseshape="타원";
                 break;
             case R.id.buttonSemicircle:
-                chooseshape="반원형";
+                chooseshape="반원";
                 break;
             case R.id.buttonTriangle:
                 chooseshape="삼각형";
@@ -204,7 +204,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
                 chooseshape="사각형";
                 break;
             case R.id.buttonDiamond:
-                chooseshape="마름모형";
+                chooseshape="마름모";
                 break;
             case R.id.buttonRectangle:
                 chooseshape="장방형";
@@ -243,28 +243,48 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
     public void takeMarkfront(){
         EditText markfront = (EditText) findViewById(R.id.mark_front);
         searchmarkfront = markfront.getText().toString();
+        if(searchmarkfront.length() == 0){
+            searchmarkfront = "- "; // 입력된 값이 없을때 '-'로 저장
+        }else {
+            searchmarkfront=this.searchmarkfront;
+        }
     }
 
     //식별자 뒤 edittext값 초기화, 저장
     public void takeMarkBack(){
         EditText markback = (EditText) findViewById(R.id.mark_Back);
         searchmarkback = markback.getText().toString();
+        if(searchmarkback.length() == 0){
+            searchmarkback = "-";
+        }else{
+            searchmarkback = this.searchmarkback; // 입력된 값이 없을때 '-'로 저장
+        }
     }
 
 
     //검색 결과 버튼 -> 식별자 앞, 뒤에 입력된 값 저장된 것 가져옴, SearchList 로 intent
     public void click_btn(View view) {
+
         takeMarkfront(); // 식별자 앞 edit에 입력한 텍스트값 가져오기
-        if(searchmarkfront.length() == 0){
-            searchmarkfront = "-"; // 입력된 값이 없을때 '-'로 저장
-        }else {
-            searchmarkfront=this.searchmarkfront;
+        takeMarkBack();
+
+        //'색상' 카테고리만 입력됐을 때
+        if(chooseshape == null && choosetype == null){
+            chooseshape = "원형, 타원, 반원, 삼각형, 사각형, 마름모, 장방형, 오각형, 육각형, 팔각형, 기타";
+            choosetype = "경질캡슐제|산제, 경질캡슐제|과립제, 경질캡슐제|장용성과립제, 나정, 필름코팅정, 서방정, 서방성필름코팅정, 저작정, 구강붕해정, 장용성필름코팅정";
+
         }
-        takeMarkBack(); // 식별자 뒤 edit에 입력한 텍스트값 가져오기
-        if(searchmarkback.length() == 0){
-            searchmarkback = "-";
-        }else{
-            searchmarkback = this.searchmarkback; // 입력된 값이 없을때 '-'로 저장
+        //'모양' 카테고리만 입력됐을 때
+        else if(choosecolor == null && choosetype == null){
+            choosecolor = "하양, 노랑, 주황, 분홍, 빨강, 갈색, 연두, 초록, 청록, 파랑, 남색, 자주, 보라, 회색, 검정, 투명";
+            choosetype = "경질캡슐제|산제, 경질캡슐제|과립제, 경질캡슐제|장용성과립제, 나정, 필름코팅정, 서방정, 서방성필름코팅정, 저작정, 구강붕해정, 장용성필름코팅정";
+
+        }
+        //'제형' 카테고리만 입력됐을 때
+        else if(choosecolor == null && chooseshape == null){
+            choosecolor = "하양, 노랑|투명, 주황, 분홍|투명, 빨강, 갈색, 연두, 초록, 청록, 파랑, 남색, 자주, 보라, 회색, 검정, 투명";
+            chooseshape = "원형, 타원, 반원, 삼각형, 사각형, 마름모, 장방형, 오각형, 육각형, 팔각형, 기타";
+
         }
 
 

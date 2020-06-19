@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.5"
+        android:layout_weight="1"
         android:orientation="vertical">
 
         <LinearLayout
@@ -153,7 +153,7 @@
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.5"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <LinearLayout
@@ -261,7 +261,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="0.5"
         android:orientation="vertical">
 
         <LinearLayout
@@ -311,23 +311,52 @@
         </LinearLayout>
     </LinearLayout>
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/searchbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="검색 결과"
+            android:onClick="click_btn"
+            android:layout_gravity="center_vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginRight="120dp"
+            android:layout_marginLeft="50dp" />
+        <Button
+            android:id="@+id/researchbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="검색 초기화"
+            android:onClick="click_btn"
+            android:layout_gravity="center_vertical"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </LinearLayout>
+
+
     <!--식별자 표시 Edit-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="1.5"
         android:orientation="vertical">
 
         <LinearLayout
-                android:layout_width="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/Markserach"
-                    android:textSize="25sp"/>
-            </LinearLayout>
+                android:text="@string/Markserach"
+                android:textSize="25sp"/>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -371,25 +400,8 @@
                     android:textSize="15sp"/>
             </LinearLayout>
 
-            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="검색 결과"
-            android:onClick="click_btn"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:layout_editor_absoluteX="111dp" />
-    </LinearLayout>
-
 
 
 </LinearLayout>
