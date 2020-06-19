@@ -1,6 +1,7 @@
 package com.example.medi1;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,11 +28,12 @@ public class SearchList extends AppCompatActivity {
     String choosetype;
     String searchmarkfront;
     String searchmarkback;
-
+    private ProgressDialog progressDialog;
     @Override
     public void onBackPressed() {
         startActivity(new Intent(getApplication(),MainActivity.class));
         super.onBackPressed();
+        finish();
     }
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,6 +57,8 @@ public class SearchList extends AppCompatActivity {
         }
         recyclerView = (RecyclerView)findViewById(R.id.rv_recyclerview);//리사이클러뷰 초기화
         recyclerView.setHasFixedSize(true);//리사이클러뷰 기존 성능 강화
+
+      //  progressDialog.dismiss();
 
         mAdapter = new MyAdapter(getApplicationContext(), list);
         recyclerView.setAdapter(mAdapter);
@@ -81,7 +85,9 @@ public class SearchList extends AppCompatActivity {
                 jsonObject = jsonArray.getJSONObject(i);
 
                 //'색상, 모양, 제형' 선택하고 검색하기(3개의 카테고리 중 하나만 선택 가능)
-                    if (choosecolor.contains(jsonObject.getString("색상앞")) && chooseshape.contains(jsonObject.getString("의약품제형")) && choosetype.contains(jsonObject.getString("제형코드명"))) {
+                //1. 색상만 선택된 경우
+                if(choosecolor != null && chooseshape == null && choosetype == null){
+                    if ((jsonObject.getString("색상앞").contains(choosecolor))) {
                         Drug drug = new Drug();
                         Log.e("표시앞 : ", jsonObject.getString("품목명") + jsonObject.getString("색상앞") + jsonObject.getString("의약품제형") + jsonObject.getString("제형코드명") + jsonObject.getString("표시앞") + jsonObject.getString("표시뒤"));
                         drug.setColor(jsonObject.getString("색상앞"));
@@ -92,6 +98,85 @@ public class SearchList extends AppCompatActivity {
                         list.add(drug);
                     }
                 }
+                //2. 색상 & 모양
+                else if(choosecolor != null && chooseshape != null && choosetype == null){
+                    if ((jsonObject.getString("색상앞").contains(choosecolor)) && (jsonObject.getString("의약품제형").equals(chooseshape))) {
+                        Drug drug = new Drug();
+                        Log.e("표시앞 : ", jsonObject.getString("품목명") + jsonObject.getString("색상앞") + jsonObject.getString("의약품제형") + jsonObject.getString("제형코드명") + jsonObject.getString("표시앞") + jsonObject.getString("표시뒤"));
+                        drug.setColor(jsonObject.getString("색상앞"));
+                        drug.setImage(jsonObject.getString("큰제품이미지"));
+                        drug.setName(jsonObject.getString("품목명"));
+                        drug.setShape(jsonObject.getString("의약품제형"));
+                        drug.setType(jsonObject.getString("제형코드명"));
+                        list.add(drug);
+                    }
+                }
+                //2. 색상 & 제형
+                else if(choosecolor != null && chooseshape == null){
+                    if ((jsonObject.getString("색상앞").contains(choosecolor)) && (choosetype.contains(jsonObject.getString("제형코드명")))) {
+                        Drug drug = new Drug();
+                        Log.e("표시앞 : ", jsonObject.getString("품목명") + jsonObject.getString("색상앞") + jsonObject.getString("의약품제형") + jsonObject.getString("제형코드명") + jsonObject.getString("표시앞") + jsonObject.getString("표시뒤"));
+                        drug.setColor(jsonObject.getString("색상앞"));
+                        drug.setImage(jsonObject.getString("큰제품이미지"));
+                        drug.setName(jsonObject.getString("품목명"));
+                        drug.setShape(jsonObject.getString("의약품제형"));
+                        drug.setType(jsonObject.getString("제형코드명"));
+                        list.add(drug);
+                    }
+                }
+                //2. 모양만
+                else if(chooseshape != null && choosecolor == null && choosetype == null) {
+                    if (jsonObject.getString("의약품제형").equals(chooseshape)) {
+                        Drug drug = new Drug();
+                        Log.e("표시앞 : ", jsonObject.getString("품목명") + jsonObject.getString("색상앞") + jsonObject.getString("의약품제형") + jsonObject.getString("제형코드명") + jsonObject.getString("표시앞") + jsonObject.getString("표시뒤"));
+                        drug.setColor(jsonObject.getString("색상앞"));
+                        drug.setImage(jsonObject.getString("큰제품이미지"));
+                        drug.setName(jsonObject.getString("품목명"));
+                        drug.setShape(jsonObject.getString("의약품제형"));
+                        drug.setType(jsonObject.getString("제형코드명"));
+                        list.add(drug);
+                    }
+                }
+                // 모양 & 색상 or 모양 & 제형
+                else if(chooseshape != null && choosecolor == null) {
+                    if (jsonObject.getString("의약품제형").equals(chooseshape) && choosetype.contains(jsonObject.getString("제형코드명"))) {
+                        Drug drug = new Drug();
+                        Log.e("표시앞 : ", jsonObject.getString("품목명") + jsonObject.getString("색상앞") + jsonObject.getString("의약품제형") + jsonObject.getString("제형코드명") + jsonObject.getString("표시앞") + jsonObject.getString("표시뒤"));
+                        drug.setColor(jsonObject.getString("색상앞"));
+                        drug.setImage(jsonObject.getString("큰제품이미지"));
+                        drug.setName(jsonObject.getString("품목명"));
+                        drug.setShape(jsonObject.getString("의약품제형"));
+                        drug.setType(jsonObject.getString("제형코드명"));
+                        list.add(drug);
+                    }
+                }
+                // 제형만
+                else if(choosetype != null && chooseshape == null) {
+                    if (choosetype.contains(jsonObject.getString("제형코드명"))) {
+                        Drug drug = new Drug();
+                        Log.e("표시앞 : ", jsonObject.getString("품목명") + jsonObject.getString("색상앞") + jsonObject.getString("의약품제형") + jsonObject.getString("제형코드명") + jsonObject.getString("표시앞") + jsonObject.getString("표시뒤"));
+                        drug.setColor(jsonObject.getString("색상앞"));
+                        drug.setImage(jsonObject.getString("큰제품이미지"));
+                        drug.setName(jsonObject.getString("품목명"));
+                        drug.setShape(jsonObject.getString("의약품제형"));
+                        drug.setType(jsonObject.getString("제형코드명"));
+                        list.add(drug);
+                    }
+                }
+                // 제형 & 색상 or 제형 & 모양
+                else {
+                    if((jsonObject.getString("색상앞").contains(choosecolor)) && jsonObject.getString("의약품제형").equals(chooseshape) && (choosetype.contains(jsonObject.getString("제형코드명")))){
+                        Drug drug = new Drug();
+                        Log.e("표시앞 : ", jsonObject.getString("품목명") + jsonObject.getString("색상앞") + jsonObject.getString("의약품제형") + jsonObject.getString("제형코드명") + jsonObject.getString("표시앞") + jsonObject.getString("표시뒤"));
+                        drug.setColor(jsonObject.getString("색상앞"));
+                        drug.setImage(jsonObject.getString("큰제품이미지"));
+                        drug.setName(jsonObject.getString("품목명"));
+                        drug.setShape(jsonObject.getString("의약품제형"));
+                        drug.setType(jsonObject.getString("제형코드명"));
+                        list.add(drug);
+                    }
+                }
+            }
 
             //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ//
         }catch (Exception e){e.printStackTrace();}

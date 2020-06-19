@@ -1,6 +1,7 @@
 package com.example.medi1;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
@@ -46,7 +47,7 @@ import static com.example.medi1.R.id.text;
 
 public class MainActivity extends AppCompatActivity implements Button.OnClickListener {
     private static final String TAG = "Ma";
-
+    private ProgressDialog progressDialog; //로딩중 progressDialog
     //식별자 앞 edit 초기화
 
     Button buttonWhite, buttonYellow, buttonOrange, buttonPink,buttonGreen,buttonRed,buttonBrown,buttonBlack;
@@ -63,9 +64,12 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-            textco = (TextView) findViewById(R.id.choosecolor);
-           // textco = new TextView(this);
-    //    Log.e("아아", coocolor);
+
+        //색상 버튼 눌린것 텍스트뷰로 띄워줄것
+        textco = (TextView) findViewById(R.id.choosecolor);
+
+        //로딩중 progressdialog
+        progressDialog = new ProgressDialog(this);
 
         //색상 버튼 초기화
         buttonWhite = (Button) findViewById(R.id.buttonWhite);
@@ -101,8 +105,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         buttonTransparente = (Button) findViewById(R.id.buttonTransparente);
         buttonTransparente.setOnClickListener(this);
 
-
-        //모양 버튼 초
+        //모양 버튼 초기화
         Button buttonCircle = (Button) findViewById(R.id.buttonCircle);
         buttonCircle.setOnClickListener(this);
         Button buttonOval = (Button) findViewById(R.id.buttonOval);
@@ -150,10 +153,20 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
                 //Log.e("dd", String.valueOf(count));
                 choosecolor="하양";
                 textco.setText(buttonWhite.getText());
+                Log.e("textco : " , textco.getText().toString());
+                if(textco.getText().toString().equals(choosecolor)){
+                    buttonWhite.setBackgroundColor(Color.GREEN);
+                }
+
                 break;
             case R.id.buttonYellow:
                 choosecolor="노랑";
                 textco.setText(buttonYellow.getText());
+                buttonYellow.setBackgroundColor(Color.YELLOW);
+                if (!textco.getText().toString().equals("하양")){
+                    buttonWhite.setBackgroundColor(Color.WHITE);
+                }
+                Log.e("textco : " , textco.getText().toString());
                 break;
             case R.id.buttonOrange:
                 choosecolor="주황";
@@ -194,6 +207,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
             case R.id.buttonPurple:
                 choosecolor="자주";
                 textco.setText(buttonPurple.getText());
+                Log.e("textco : " , textco.getText().toString());
                 break;
             case R.id.buttonViolet:
                 choosecolor="보라";
@@ -265,6 +279,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         }
     }
 
+
     //식별자 앞 edittext값 초기화, 저장
     public void takeMarkfront(){
         EditText markfront = (EditText) findViewById(R.id.mark_front);
@@ -290,7 +305,6 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
 
     //검색 결과 버튼
     public void click_result(View view) {
-
         /*
         //'색상' 카테고리만 입력됐을 때
         if(chooseshape == null && choosetype == null){
@@ -310,28 +324,36 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
             chooseshape = "원형, 타원, 반원, 삼각형, 사각형, 마름모, 장방형, 오각형, 육각형, 팔각형, 기타";
 
         }
-
-
          */
+        progressDialog.setMessage("로딩중입니다.");
+        progressDialog.show();
 
         Intent intent = new Intent(getApplicationContext(),SearchList.class);
         intent.putExtra("choosecolor",choosecolor);
         intent.putExtra("chooseshape",chooseshape);
         intent.putExtra("choosetype",choosetype);
+        //intent.putExtra("progressDialog",progressDialog);
 
         startActivity(intent.addFlags(FLAG_ACTIVITY_NEW_TASK));
+        //progressDialog.dismiss();
     }
 
     //식별자 검색 결과 버튼
     public void click_markresult(View view) {
+        progressDialog.setMessage("로딩중입니다.");
+        progressDialog.show();
+
         takeMarkfront(); // 식별자 앞 edit에 입력한 텍스트값 가져오기
         takeMarkBack();
 
         Intent intent = new Intent(getApplicationContext(),SearchList.class);
+
         intent.putExtra("searchmarkfront",searchmarkfront);
         intent.putExtra("searchmarkback", searchmarkback);
 
+
         startActivity(intent.addFlags(FLAG_ACTIVITY_NEW_TASK));
+        //progressDialog.dismiss();
     }
 
 
