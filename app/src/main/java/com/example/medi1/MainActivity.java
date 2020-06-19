@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,13 +45,12 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
 
     //식별자 앞 edit 초기화
 
-
+    Button buttonWhite;
     private String choosecolor = null; // 선택한 색상 저장
     private String chooseshape = null; // 선택한 모양 저장
     private String choosetype = null; // 선택한 제형 저장
     private String searchmarkfront = null; // 식별자 검색 저장(앞)
     private String searchmarkback = null; // 식별자 검색 저장(뒤)
-
 
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -58,8 +59,9 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         //색상 버튼 초기화
-        Button buttonWhite = (Button) findViewById(R.id.buttonWhite);
+        buttonWhite = (Button) findViewById(R.id.buttonWhite);
         buttonWhite.setOnClickListener(this);
         Button buttonGreen = (Button) findViewById(R.id.buttonGreen);
         buttonGreen.setOnClickListener(this);
@@ -92,7 +94,18 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         Button buttonTransparente = (Button) findViewById(R.id.buttonTransparente);
         buttonTransparente.setOnClickListener(this);
 
-        //모양 버튼 초기화
+        buttonWhite.setOnTouchListener(new View.OnTouchListener(){
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+               if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                        buttonWhite.setBackgroundColor(Color.TRANSPARENT);
+                }
+                return false;
+            }
+        });
+
+        //모양 버튼 초
         Button buttonCircle = (Button) findViewById(R.id.buttonCircle);
         buttonCircle.setOnClickListener(this);
         Button buttonOval = (Button) findViewById(R.id.buttonOval);
@@ -131,7 +144,6 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
 
     //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ//
 
-    //조건 버튼 누른 후 조건에 맞는 의약품 검색 실행
 
     //색상, 모양, 제형 버튼 클릭 함수
     @Override
@@ -140,6 +152,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
             //////////색상///////////
             case R.id.buttonWhite:
                 choosecolor="하양";
+                buttonWhite.setBackgroundColor(Color.GREEN);
                 break;
             case R.id.buttonYellow:
                 choosecolor="노랑";
@@ -262,6 +275,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
     }
 
 
+
     //검색 결과 버튼
     public void click_result(View view) {
 
@@ -305,8 +319,5 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         startActivity(intent.addFlags(FLAG_ACTIVITY_NEW_TASK));
     }
 
-    //검색초기화
-    public void click_research(View view) {
 
-    }
 }

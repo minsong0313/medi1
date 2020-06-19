@@ -340,28 +340,31 @@
 
     <!--검색, 초기화버튼-->
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="0.8"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
         <Button
             android:id="@+id/searchbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
             android:text="@string/search"
             android:onClick="click_result"
-            android:layout_gravity="center_vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginRight="120dp"
-            android:layout_marginLeft="50dp" />
+            android:layout_gravity="center" />
         <Button
             android:id="@+id/researchbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/buttonResearch"
-            android:layout_gravity="center_vertical"
-            android:onClick="click_research"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            android:layout_gravity="center" />
+         </LinearLayout>
     </LinearLayout>
 
     <!--식별자 표시 Edit-->
