@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -49,16 +50,20 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
     private static final String TAG = "Ma";
     private ProgressDialog progressDialog; //로딩중 progressDialog
     //식별자 앞 edit 초기화
-
+    //색상 버튼
     Button buttonWhite, buttonYellow, buttonOrange, buttonPink,buttonGreen,buttonRed,buttonBrown,buttonBlack;
     Button buttonYellowgreen,buttonBluishgreen,buttonBlue,buttonNavy,buttonPurple,buttonViolet,buttonGray,buttonTransparente;
+    //모양 버튼
+    Button buttonCircle, buttonOval, buttonSemicircle, buttonTriangle, buttonSquare, buttonDiamond;
+    Button buttonRectangle, buttonPentagon, buttonHexagon, buttonOctagon, buttonEct ;
+//제형 버튼
     private String choosecolor = null; // 선택한 색상 저장
     private String chooseshape = null; // 선택한 모양 저장
     private String choosetype = null; // 선택한 제형 저장
     private String searchmarkfront = null; // 식별자 검색 저장(앞)
     private String searchmarkback = null; // 식별자 검색 저장(뒤)
 
-    TextView textco;
+    TextView textcolor, textshape, texttype;
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +71,9 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         setContentView(R.layout.activity_main);
 
         //색상 버튼 눌린것 텍스트뷰로 띄워줄것
-        textco = (TextView) findViewById(R.id.choosecolor);
-
+        textcolor = (TextView) findViewById(R.id.choosecolor);
+        textshape = (TextView) findViewById(R.id.chooseshape);
+        texttype = (TextView) findViewById(R.id.choosetype);
         //로딩중 progressdialog
         progressDialog = new ProgressDialog(this);
 
@@ -106,27 +112,27 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         buttonTransparente.setOnClickListener(this);
 
         //모양 버튼 초기화
-        Button buttonCircle = (Button) findViewById(R.id.buttonCircle);
+        buttonCircle = (Button) findViewById(R.id.buttonCircle);
         buttonCircle.setOnClickListener(this);
-        Button buttonOval = (Button) findViewById(R.id.buttonOval);
+        buttonOval = (Button) findViewById(R.id.buttonOval);
         buttonOval.setOnClickListener(this);
-        Button buttonSemicircle = (Button) findViewById(R.id.buttonSemicircle);
+        buttonSemicircle = (Button) findViewById(R.id.buttonSemicircle);
         buttonSemicircle.setOnClickListener(this);
-        Button buttonTriangle = (Button) findViewById(R.id.buttonTriangle);
+        buttonTriangle = (Button) findViewById(R.id.buttonTriangle);
         buttonTriangle.setOnClickListener(this);
-        Button buttonSquare = (Button) findViewById(R.id.buttonSquare);
+        buttonSquare = (Button) findViewById(R.id.buttonSquare);
         buttonSquare.setOnClickListener(this);
-        Button buttonDiamond = (Button) findViewById(R.id.buttonDiamond);
+        buttonDiamond = (Button) findViewById(R.id.buttonDiamond);
         buttonDiamond.setOnClickListener(this);
-        Button buttonRectangle = (Button) findViewById(R.id.buttonRectangle);
+        buttonRectangle = (Button) findViewById(R.id.buttonRectangle);
         buttonRectangle.setOnClickListener(this);
-        Button buttonPentagon = (Button) findViewById(R.id.buttonPentagon);
+        buttonPentagon = (Button) findViewById(R.id.buttonPentagon);
         buttonPentagon.setOnClickListener(this);
-        Button buttonHexagon = (Button) findViewById(R.id.buttonHexagon);
+        buttonHexagon = (Button) findViewById(R.id.buttonHexagon);
         buttonHexagon.setOnClickListener(this);
-        Button buttonOctagon = (Button) findViewById(R.id.buttonOctagon);
+        buttonOctagon = (Button) findViewById(R.id.buttonOctagon);
         buttonOctagon.setOnClickListener(this);
-        Button buttonEct = (Button) findViewById(R.id.buttonEct);
+        buttonEct = (Button) findViewById(R.id.buttonEct);
         buttonEct.setOnClickListener(this);
 
         //제형 버튼 초기화
@@ -152,77 +158,77 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
             case R.id.buttonWhite:
                 //Log.e("dd", String.valueOf(count));
                 choosecolor="하양";
-                textco.setText(buttonWhite.getText());
-                Log.e("textco : " , textco.getText().toString());
-                if(textco.getText().toString().equals(choosecolor)){
+                textcolor.setText(buttonWhite.getText());
+                Log.e("textco : " , textcolor.getText().toString());
+                if(textcolor.getText().toString().equals(choosecolor)){
                     buttonWhite.setBackgroundColor(Color.GREEN);
                 }
 
                 break;
             case R.id.buttonYellow:
                 choosecolor="노랑";
-                textco.setText(buttonYellow.getText());
+                textcolor.setText(buttonYellow.getText());
                 buttonYellow.setBackgroundColor(Color.YELLOW);
-                if (!textco.getText().toString().equals("하양")){
+                if (!textcolor.getText().toString().equals("하양")){
                     buttonWhite.setBackgroundColor(Color.WHITE);
                 }
-                Log.e("textco : " , textco.getText().toString());
+                Log.e("textco : " , textcolor.getText().toString());
                 break;
             case R.id.buttonOrange:
                 choosecolor="주황";
-                textco.setText(buttonOrange.getText());
+                textcolor.setText(buttonOrange.getText());
                 break;
             case R.id.buttonPink:
                 choosecolor="분홍";
-                textco.setText(buttonPink.getText());
+                textcolor.setText(buttonPink.getText());
                 break;
             case R.id.buttonRed:
                 choosecolor="빨강";
-                textco.setText(buttonRed.getText());
+                textcolor.setText(buttonRed.getText());
                 break;
             case R.id.buttonBrown:
                 choosecolor="갈색";
-                textco.setText(buttonBrown.getText());
+                textcolor.setText(buttonBrown.getText());
                 break;
             case R.id.buttonYellowgreen:
                 choosecolor="연두";
-                textco.setText(buttonYellowgreen.getText());
+                textcolor.setText(buttonYellowgreen.getText());
                 break;
             case R.id.buttonGreen:
                 choosecolor="초록";
-                textco.setText(buttonGreen.getText());
+                textcolor.setText(buttonGreen.getText());
                 break;
             case R.id.buttonBluishgreen:
                 choosecolor="청록";
-                textco.setText(buttonBluishgreen.getText());
+                textcolor.setText(buttonBluishgreen.getText());
                 break;
             case R.id.buttonBlue:
                 choosecolor="파랑";
-                textco.setText(buttonBlue.getText());
+                textcolor.setText(buttonBlue.getText());
                 break;
             case R.id.buttonNavy:
                 choosecolor="남색";
-                textco.setText(buttonNavy.getText());
+                textcolor.setText(buttonNavy.getText());
                 break;
             case R.id.buttonPurple:
                 choosecolor="자주";
-                textco.setText(buttonPurple.getText());
-                Log.e("textco : " , textco.getText().toString());
+                textcolor.setText(buttonPurple.getText());
+                Log.e("textco : " , textcolor.getText().toString());
                 break;
             case R.id.buttonViolet:
                 choosecolor="보라";
-                textco.setText(buttonViolet.getText());
+                textcolor.setText(buttonViolet.getText());
                 break;
             case R.id.buttonGray:
                 choosecolor="회색";
-                textco.setText(buttonGray.getText());
+                textcolor.setText(buttonGray.getText());
                 break;
             case R.id.buttonBlack:
                 choosecolor="검정";
-                textco.setText(buttonBlack.getText());
+                textcolor.setText(buttonBlack.getText());
                 break;
             case R.id.buttonTransparente:
-                textco.setText(buttonTransparente.getText());
+                textcolor.setText(buttonTransparente.getText());
                 choosecolor="투명";
                 break;
 
@@ -230,36 +236,47 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
 
             case R.id.buttonCircle:
                 chooseshape="원형";
+                textshape.setText(buttonCircle.getText());
                 break;
             case R.id.buttonOval:
                 chooseshape="타원";
+                textshape.setText(buttonOval.getText());
                 break;
             case R.id.buttonSemicircle:
                 chooseshape="반원";
+                textshape.setText(buttonSemicircle.getText());
                 break;
             case R.id.buttonTriangle:
                 chooseshape="삼각형";
+                textshape.setText(buttonTriangle.getText());
                 break;
             case R.id.buttonSquare:
                 chooseshape="사각형";
+                textshape.setText(buttonSquare.getText());
                 break;
             case R.id.buttonDiamond:
                 chooseshape="마름모";
+                textshape.setText(buttonDiamond.getText());
                 break;
             case R.id.buttonRectangle:
                 chooseshape="장방형";
+                textshape.setText(buttonRectangle.getText());
                 break;
             case R.id.buttonPentagon:
                 chooseshape="오각형";
+                textshape.setText(buttonPentagon.getText());
                 break;
             case R.id.buttonHexagon:
                 chooseshape="육각형";
+                textshape.setText(buttonHexagon.getText());
                 break;
             case R.id.buttonOctagon:
                 chooseshape="팔각형";
+                textshape.setText(buttonOctagon.getText());
                 break;
             case R.id.buttonEct:
                 chooseshape="기타";
+                textshape.setText(buttonEct.getText());
                 break;
 
             //////////제형//////////
@@ -298,7 +315,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         if(searchmarkback.length() == 0){
             searchmarkback = null;
         }else{
-            searchmarkback = this.searchmarkback; // 입력된 값이 없을때 '-'로 저장
+            searchmarkback = this.searchmarkback;
         }
     }
 
@@ -324,8 +341,8 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
             chooseshape = "원형, 타원, 반원, 삼각형, 사각형, 마름모, 장방형, 오각형, 육각형, 팔각형, 기타";
         }
          */
-        progressDialog.setMessage("로딩중입니다.");
-        progressDialog.show();
+      //  progressDialog.setMessage("로딩중입니다.");
+       // progressDialog.show();
 
        //takeMarkfront(); // 식별자 앞 edit에 입력한 텍스트값 가져오기
        //takeMarkBack();
@@ -365,6 +382,10 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         choosecolor = null;
         chooseshape = null;
         choosetype = null;
-        textco.setText("");
+        textcolor.setText("");
+        textshape.setText("");
+        Toast myToast = Toast.makeText(this.getApplicationContext(),"선택이 초기화 되었습니다.", Toast.LENGTH_SHORT);
+        myToast.show();
+
     }
 }
