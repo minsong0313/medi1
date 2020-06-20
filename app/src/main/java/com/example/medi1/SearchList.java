@@ -1,7 +1,6 @@
 package com.example.medi1;
 
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,7 +27,7 @@ public class SearchList extends AppCompatActivity {
     String choosetype;
     String searchmarkfront;
     String searchmarkback;
-    private ProgressDialog progressDialog;
+
     @Override
     public void onBackPressed() {
         startActivity(new Intent(getApplication(),MainActivity.class));
@@ -57,8 +56,6 @@ public class SearchList extends AppCompatActivity {
         }
         recyclerView = (RecyclerView)findViewById(R.id.rv_recyclerview);//리사이클러뷰 초기화
         recyclerView.setHasFixedSize(true);//리사이클러뷰 기존 성능 강화
-
-      //  progressDialog.dismiss();
 
         mAdapter = new MyAdapter(getApplicationContext(), list);
         recyclerView.setAdapter(mAdapter);
@@ -89,7 +86,7 @@ public class SearchList extends AppCompatActivity {
                 if(choosecolor != null && chooseshape == null && choosetype == null){
                     if ((jsonObject.getString("색상앞").contains(choosecolor))) {
                         Drug drug = new Drug();
-                        Log.e("표시앞 : ", jsonObject.getString("품목명") + jsonObject.getString("색상앞") + jsonObject.getString("의약품제형") + jsonObject.getString("제형코드명") + jsonObject.getString("표시앞") + jsonObject.getString("표시뒤"));
+                        Log.e("1번 : ", jsonObject.getString("품목명") + jsonObject.getString("색상앞") + jsonObject.getString("의약품제형"));
                         drug.setColor(jsonObject.getString("색상앞"));
                         drug.setImage(jsonObject.getString("큰제품이미지"));
                         drug.setName(jsonObject.getString("품목명"));
@@ -102,7 +99,7 @@ public class SearchList extends AppCompatActivity {
                 else if(choosecolor != null && chooseshape != null && choosetype == null){
                     if ((jsonObject.getString("색상앞").contains(choosecolor)) && (jsonObject.getString("의약품제형").equals(chooseshape))) {
                         Drug drug = new Drug();
-                        Log.e("표시앞 : ", jsonObject.getString("품목명") + jsonObject.getString("색상앞") + jsonObject.getString("의약품제형") + jsonObject.getString("제형코드명") + jsonObject.getString("표시앞") + jsonObject.getString("표시뒤"));
+                        Log.e("2번 : ", jsonObject.getString("품목명") + jsonObject.getString("색상앞") + jsonObject.getString("의약품제형") + jsonObject.getString("제형코드명") + jsonObject.getString("표시앞") + jsonObject.getString("표시뒤"));
                         drug.setColor(jsonObject.getString("색상앞"));
                         drug.setImage(jsonObject.getString("큰제품이미지"));
                         drug.setName(jsonObject.getString("품목명"));
@@ -111,11 +108,11 @@ public class SearchList extends AppCompatActivity {
                         list.add(drug);
                     }
                 }
-                //2. 색상 & 제형
+                //3. 색상 & 제형
                 else if(choosecolor != null && chooseshape == null){
                     if ((jsonObject.getString("색상앞").contains(choosecolor)) && (choosetype.contains(jsonObject.getString("제형코드명")))) {
                         Drug drug = new Drug();
-                        Log.e("표시앞 : ", jsonObject.getString("품목명") + jsonObject.getString("색상앞") + jsonObject.getString("의약품제형") + jsonObject.getString("제형코드명") + jsonObject.getString("표시앞") + jsonObject.getString("표시뒤"));
+                        Log.e("3번 : ", jsonObject.getString("품목명") + jsonObject.getString("색상앞") + jsonObject.getString("의약품제형") + jsonObject.getString("제형코드명") + jsonObject.getString("표시앞") + jsonObject.getString("표시뒤"));
                         drug.setColor(jsonObject.getString("색상앞"));
                         drug.setImage(jsonObject.getString("큰제품이미지"));
                         drug.setName(jsonObject.getString("품목명"));
@@ -124,11 +121,11 @@ public class SearchList extends AppCompatActivity {
                         list.add(drug);
                     }
                 }
-                //2. 모양만
+                //4. 모양만
                 else if(chooseshape != null && choosecolor == null && choosetype == null) {
                     if (jsonObject.getString("의약품제형").equals(chooseshape)) {
                         Drug drug = new Drug();
-                        Log.e("표시앞 : ", jsonObject.getString("품목명") + jsonObject.getString("색상앞") + jsonObject.getString("의약품제형") + jsonObject.getString("제형코드명") + jsonObject.getString("표시앞") + jsonObject.getString("표시뒤"));
+                        Log.e("4번 : ", jsonObject.getString("품목명") + jsonObject.getString("색상앞") + jsonObject.getString("의약품제형") + jsonObject.getString("제형코드명") + jsonObject.getString("표시앞") + jsonObject.getString("표시뒤"));
                         drug.setColor(jsonObject.getString("색상앞"));
                         drug.setImage(jsonObject.getString("큰제품이미지"));
                         drug.setName(jsonObject.getString("품목명"));
@@ -137,11 +134,11 @@ public class SearchList extends AppCompatActivity {
                         list.add(drug);
                     }
                 }
-                // 모양 & 색상 or 모양 & 제형
+                //5.모양 & 제형
                 else if(chooseshape != null && choosecolor == null) {
-                    if (jsonObject.getString("의약품제형").equals(chooseshape) && choosetype.contains(jsonObject.getString("제형코드명"))) {
+                    if (jsonObject.getString("의약품제형").equals(chooseshape)) {
                         Drug drug = new Drug();
-                        Log.e("표시앞 : ", jsonObject.getString("품목명") + jsonObject.getString("색상앞") + jsonObject.getString("의약품제형") + jsonObject.getString("제형코드명") + jsonObject.getString("표시앞") + jsonObject.getString("표시뒤"));
+                        Log.e("5번 : ", jsonObject.getString("품목명") + jsonObject.getString("색상앞") + jsonObject.getString("의약품제형") + jsonObject.getString("제형코드명") + jsonObject.getString("표시앞") + jsonObject.getString("표시뒤"));
                         drug.setColor(jsonObject.getString("색상앞"));
                         drug.setImage(jsonObject.getString("큰제품이미지"));
                         drug.setName(jsonObject.getString("품목명"));
@@ -150,11 +147,11 @@ public class SearchList extends AppCompatActivity {
                         list.add(drug);
                     }
                 }
-                // 제형만
+                // 6. 제형만
                 else if(choosetype != null && chooseshape == null) {
                     if (choosetype.contains(jsonObject.getString("제형코드명"))) {
                         Drug drug = new Drug();
-                        Log.e("표시앞 : ", jsonObject.getString("품목명") + jsonObject.getString("색상앞") + jsonObject.getString("의약품제형") + jsonObject.getString("제형코드명") + jsonObject.getString("표시앞") + jsonObject.getString("표시뒤"));
+                        Log.e("6번 : ", jsonObject.getString("품목명") + jsonObject.getString("색상앞") + jsonObject.getString("의약품제형") + jsonObject.getString("제형코드명") + jsonObject.getString("표시앞") + jsonObject.getString("표시뒤"));
                         drug.setColor(jsonObject.getString("색상앞"));
                         drug.setImage(jsonObject.getString("큰제품이미지"));
                         drug.setName(jsonObject.getString("품목명"));
@@ -163,11 +160,11 @@ public class SearchList extends AppCompatActivity {
                         list.add(drug);
                     }
                 }
-                // 제형 & 색상 or 제형 & 모양
+                // 7. 모두 선택
                 else {
                     if((jsonObject.getString("색상앞").contains(choosecolor)) && jsonObject.getString("의약품제형").equals(chooseshape) && (choosetype.contains(jsonObject.getString("제형코드명")))){
                         Drug drug = new Drug();
-                        Log.e("표시앞 : ", jsonObject.getString("품목명") + jsonObject.getString("색상앞") + jsonObject.getString("의약품제형") + jsonObject.getString("제형코드명") + jsonObject.getString("표시앞") + jsonObject.getString("표시뒤"));
+                        Log.e("7번 : ", jsonObject.getString("품목명") + jsonObject.getString("색상앞") + jsonObject.getString("의약품제형") + jsonObject.getString("제형코드명") + jsonObject.getString("표시앞") + jsonObject.getString("표시뒤"));
                         drug.setColor(jsonObject.getString("색상앞"));
                         drug.setImage(jsonObject.getString("큰제품이미지"));
                         drug.setName(jsonObject.getString("품목명"));
@@ -201,12 +198,12 @@ public class SearchList extends AppCompatActivity {
             for(int i=0; i<jsonArray.length(); i++){
                 jsonObject = jsonArray.getJSONObject(i);
 
-                //'색상, 모양, 제형' 선택하고 검색하기(3개의 카테고리 중 하나만 선택 가능)
-                if(!searchmarkfront.equals("-")&& searchmarkback.equals("-")) { //식별자 앞이 입력됐을 경우
+                //8. 표시앞만
+                if(searchmarkfront != null && searchmarkback == null) { //식별자 앞이 입력됐을 경우
                     if (searchmarkfront.equals(jsonObject.getString("표시앞")))
                     {
                         Drug drug = new Drug();
-                        Log.e("표시앞 : ", jsonObject.getString("품목명") + jsonObject.getString("색상앞") + jsonObject.getString("의약품제형") + jsonObject.getString("제형코드명") + jsonObject.getString("표시앞") + jsonObject.getString("표시뒤"));
+                        Log.e("8번째 : ", jsonObject.getString("품목명") + jsonObject.getString("색상앞") + jsonObject.getString("의약품제형") + jsonObject.getString("제형코드명") + jsonObject.getString("표시앞") + jsonObject.getString("표시뒤"));
                         drug.setColor(jsonObject.getString("색상앞"));
                         drug.setImage(jsonObject.getString("큰제품이미지"));
                         drug.setName(jsonObject.getString("품목명"));
@@ -215,12 +212,13 @@ public class SearchList extends AppCompatActivity {
 
                         list.add(drug);
                     }
-                }
-                else if(!searchmarkback.equals("-") && !searchmarkfront.equals("-")){ //두개 다 입력
+
+                } //9. 표시 앞 뒤 둘 다 입력
+                else if(searchmarkfront != null){ //두개 다 입력
                     if (searchmarkfront.equals(jsonObject.getString("표시앞")) && searchmarkback.equals(jsonObject.getString("표시뒤")))
                     {
                         Drug drug = new Drug();
-                        Log.e("표시 모두 : ", jsonObject.getString("품목명") + jsonObject.getString("색상앞") + jsonObject.getString("의약품제형") + jsonObject.getString("제형코드명") + jsonObject.getString("표시앞") + jsonObject.getString("표시뒤"));
+                        Log.e("9번째 : ", jsonObject.getString("품목명") + jsonObject.getString("색상앞") + jsonObject.getString("의약품제형") + jsonObject.getString("제형코드명") + jsonObject.getString("표시앞") + jsonObject.getString("표시뒤"));
                         drug.setColor(jsonObject.getString("색상앞"));
                         drug.setImage(jsonObject.getString("큰제품이미지"));
                         drug.setName(jsonObject.getString("품목명"));
@@ -229,12 +227,12 @@ public class SearchList extends AppCompatActivity {
 
                         list.add(drug);
                     }
-                }
-                else if(!searchmarkback.equals("-")) { //식별자 뒤가 입력됐을 경우
+                }//10. 표시뒤만
+                else if(searchmarkback != null) { //식별자 뒤가 입력됐을 경우
                     if (searchmarkback.equals(jsonObject.getString("표시뒤")))
                     {
                         Drug drug = new Drug();
-                        Log.e("표시뒤 : ", jsonObject.getString("품목명") + jsonObject.getString("색상앞") + jsonObject.getString("의약품제형") + jsonObject.getString("제형코드명") + jsonObject.getString("표시앞") + jsonObject.getString("표시뒤"));
+                        Log.e("10번째 : ", jsonObject.getString("품목명") + jsonObject.getString("색상앞") + jsonObject.getString("의약품제형") + jsonObject.getString("제형코드명") + jsonObject.getString("표시앞") + jsonObject.getString("표시뒤"));
                         drug.setColor(jsonObject.getString("색상앞"));
                         drug.setImage(jsonObject.getString("큰제품이미지"));
                         drug.setName(jsonObject.getString("품목명"));

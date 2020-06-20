@@ -285,7 +285,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         EditText markfront = (EditText) findViewById(R.id.mark_front);
         searchmarkfront = markfront.getText().toString();
         if(searchmarkfront.length() == 0){
-            searchmarkfront = "-"; // 입력된 값이 없을때 '-'로 저장
+            searchmarkfront = null; // 입력된 값이 없을때 '-'로 저장
         }else {
             searchmarkfront=this.searchmarkfront;
         }
@@ -296,7 +296,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         EditText markback = (EditText) findViewById(R.id.mark_Back);
         searchmarkback = markback.getText().toString();
         if(searchmarkback.length() == 0){
-            searchmarkback = "-";
+            searchmarkback = null;
         }else{
             searchmarkback = this.searchmarkback; // 입력된 값이 없을때 '-'로 저장
         }
@@ -322,17 +322,20 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         else if(choosecolor == null && chooseshape == null){
             choosecolor = "하양, 노랑, 주황, 분홍, 빨강, 갈색, 연두, 초록, 청록, 파랑, 남색, 자주, 보라, 회색, 검정, 투명";
             chooseshape = "원형, 타원, 반원, 삼각형, 사각형, 마름모, 장방형, 오각형, 육각형, 팔각형, 기타";
-
         }
          */
         progressDialog.setMessage("로딩중입니다.");
         progressDialog.show();
 
+       //takeMarkfront(); // 식별자 앞 edit에 입력한 텍스트값 가져오기
+       //takeMarkBack();
+
         Intent intent = new Intent(getApplicationContext(),SearchList.class);
         intent.putExtra("choosecolor",choosecolor);
         intent.putExtra("chooseshape",chooseshape);
         intent.putExtra("choosetype",choosetype);
-        //intent.putExtra("progressDialog",progressDialog);
+        //intent.putExtra("searchmarkfront",searchmarkfront);
+        //intent.putExtra("searchmarkback", searchmarkback);
 
         startActivity(intent.addFlags(FLAG_ACTIVITY_NEW_TASK));
         //progressDialog.dismiss();
