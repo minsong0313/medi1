@@ -42,20 +42,12 @@ import java.util.Iterator;
 import java.util.Map;
 
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
-import static com.example.medi1.R.id.buttonYellow;
-import static com.example.medi1.R.id.choosecolor;
-import static com.example.medi1.R.id.text;
 
 public class MainActivity extends AppCompatActivity implements Button.OnClickListener {
     private static final String TAG = "Ma";
     private ProgressDialog progressDialog; //로딩중 progressDialog
     //식별자 앞 edit 초기화
-    //색상 버튼
-    Button buttonWhite, buttonYellow, buttonOrange, buttonPink,buttonGreen,buttonRed,buttonBrown,buttonBlack;
-    Button buttonYellowgreen,buttonBluishgreen,buttonBlue,buttonNavy,buttonPurple,buttonViolet,buttonGray,buttonTransparente;
-    //모양 버튼
-    Button buttonCircle, buttonOval, buttonSemicircle, buttonTriangle, buttonSquare, buttonDiamond;
-    Button buttonRectangle, buttonPentagon, buttonHexagon, buttonOctagon, buttonEct ;
+
 //제형 버튼
     private String choosecolor = null; // 선택한 색상 저장
     private String chooseshape = null; // 선택한 모양 저장
@@ -63,12 +55,21 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
     private String searchmarkfront = null; // 식별자 검색 저장(앞)
     private String searchmarkback = null; // 식별자 검색 저장(뒤)
 
+    private String buttonId1;
+    private String thiscolor;
+
+    Button result;
+    Button [] colorBtn = new Button[16]; //색상 버튼 배열
+    Button [] shapeBtn = new Button[11]; //모양 버튼 배열
+    //Button [] typeBtn = new Button[16]; //제형 버튼 배열
     TextView textcolor, textshape, texttype;
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         //색상 버튼 눌린것 텍스트뷰로 띄워줄것
         textcolor = (TextView) findViewById(R.id.choosecolor);
@@ -77,63 +78,11 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         //로딩중 progressdialog
         progressDialog = new ProgressDialog(this);
 
-        //색상 버튼 초기화
-        buttonWhite = (Button) findViewById(R.id.buttonWhite);
-        buttonWhite.setOnClickListener(this);
-        buttonGreen = (Button) findViewById(R.id.buttonGreen);
-        buttonGreen.setOnClickListener(this);
-        buttonYellow = (Button) findViewById(R.id.buttonYellow);
-        buttonYellow.setOnClickListener(this);
-        buttonOrange = (Button) findViewById(R.id.buttonOrange);
-        buttonOrange.setOnClickListener(this);
-        buttonPink = (Button) findViewById(R.id.buttonPink);
-        buttonPink.setOnClickListener(this);
-        buttonRed = (Button) findViewById(R.id.buttonRed);
-        buttonRed.setOnClickListener(this);
-        buttonBrown = (Button) findViewById(R.id.buttonBrown);
-        buttonBrown.setOnClickListener(this);
-        buttonYellowgreen = (Button) findViewById(R.id.buttonYellowgreen);
-        buttonYellowgreen.setOnClickListener(this);
-        buttonBluishgreen = (Button) findViewById(R.id.buttonBluishgreen);
-        buttonBluishgreen.setOnClickListener(this);
-        buttonBlue = (Button) findViewById(R.id.buttonBlue);
-        buttonBlue.setOnClickListener(this);
-        buttonNavy = (Button) findViewById(R.id.buttonNavy);
-        buttonNavy.setOnClickListener(this);
-        buttonPurple = (Button) findViewById(R.id.buttonPurple);
-        buttonPurple.setOnClickListener(this);
-        buttonViolet = (Button) findViewById(R.id.buttonViolet);
-        buttonViolet.setOnClickListener(this);
-        buttonGray = (Button) findViewById(R.id.buttonGray);
-        buttonGray.setOnClickListener(this);
-        buttonBlack = (Button) findViewById(R.id.buttonBlack);
-        buttonBlack.setOnClickListener(this);
-        buttonTransparente = (Button) findViewById(R.id.buttonTransparente);
-        buttonTransparente.setOnClickListener(this);
+        thiscolor = textcolor.getText().toString();
+        Log.e("지금 색:", thiscolor);
 
-        //모양 버튼 초기화
-        buttonCircle = (Button) findViewById(R.id.buttonCircle);
-        buttonCircle.setOnClickListener(this);
-        buttonOval = (Button) findViewById(R.id.buttonOval);
-        buttonOval.setOnClickListener(this);
-        buttonSemicircle = (Button) findViewById(R.id.buttonSemicircle);
-        buttonSemicircle.setOnClickListener(this);
-        buttonTriangle = (Button) findViewById(R.id.buttonTriangle);
-        buttonTriangle.setOnClickListener(this);
-        buttonSquare = (Button) findViewById(R.id.buttonSquare);
-        buttonSquare.setOnClickListener(this);
-        buttonDiamond = (Button) findViewById(R.id.buttonDiamond);
-        buttonDiamond.setOnClickListener(this);
-        buttonRectangle = (Button) findViewById(R.id.buttonRectangle);
-        buttonRectangle.setOnClickListener(this);
-        buttonPentagon = (Button) findViewById(R.id.buttonPentagon);
-        buttonPentagon.setOnClickListener(this);
-        buttonHexagon = (Button) findViewById(R.id.buttonHexagon);
-        buttonHexagon.setOnClickListener(this);
-        buttonOctagon = (Button) findViewById(R.id.buttonOctagon);
-        buttonOctagon.setOnClickListener(this);
-        buttonEct = (Button) findViewById(R.id.buttonEct);
-        buttonEct.setOnClickListener(this);
+        settingColorbtn();
+        settingShapebtn();
 
         //제형 버튼 초기화
         Button buttonTablet = (Button) findViewById(R.id.buttonTablet);
@@ -145,140 +94,78 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         Button buttonEct2 = (Button) findViewById(R.id.buttonEct2);
         buttonEct2.setOnClickListener(this);
 
+
+
     }
 
     //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ//
+
+
+
+
+    public void settingColorbtn(){
+        for(int i=0; i <colorBtn.length; i++){
+            buttonId1 = "color_btn" + (i+1); //버튼 아이디값 저장
+            colorBtn[i] = findViewById(getResources().getIdentifier(buttonId1, "id",getPackageName())); //버튼 초기화
+
+        }
+
+        for(Button buttonId : colorBtn){
+            buttonId.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    result = findViewById(v.getId());
+                    result.setBackgroundColor(Color.YELLOW); //해당아이디 버튼의 배경색을 하양으로 바꿈
+                    choosecolor = result.getText().toString(); //선택 색상을 저장
+
+                    //////여기서 for문으로 thiscolor랑 result.getText.toString()비교해서 배경색 다시 바꿔주기
+                    Log.e("다음 클릭 후 : ", thiscolor);
+
+                    for(int j=0; j<colorBtn.length; j++){
+                        if(!colorBtn[j].getText().toString().equals(choosecolor)) {
+                                    colorBtn[j].setBackgroundColor(Color.WHITE);
+
+                        }if(colorBtn[j].getText().toString().equals(thiscolor)){
+                            colorBtn[j].setBackgroundColor(Color.WHITE);
+                        }
+                    }
+
+                  //  textcolor.setText(result.getText()); // 선택 색상을 보여줄 textview
+
+                    thiscolor = textcolor.getText().toString();
+
+                }
+            });
+        }
+
+
+    } //색상 버튼 이벤트
+    public void settingShapebtn(){
+        for(int i=0; i <shapeBtn.length; i++){
+            String buttonId = "shape_btn" + (i+1); //버튼 아이디값 저장
+            shapeBtn[i] = findViewById(getResources().getIdentifier(buttonId, "id",getPackageName()));
+        }
+
+        for(Button buttonId : shapeBtn){
+            buttonId.setOnClickListener(new View.OnClickListener(){
+
+                @Override
+                public void onClick(View v) {
+                    Button result = findViewById(v.getId());
+                    chooseshape = result.getText().toString();
+                    textshape.setText(result.getText());
+                }
+            });
+        }
+    } // 모양 버튼 이벤트
+
 
 
     //색상, 모양, 제형 버튼 클릭 함수
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            //////////색상///////////
-            case R.id.buttonWhite:
-                //Log.e("dd", String.valueOf(count));
-                choosecolor="하양";
-                textcolor.setText(buttonWhite.getText());
-                Log.e("textco : " , textcolor.getText().toString());
-                if(textcolor.getText().toString().equals(choosecolor)){
-                    buttonWhite.setBackgroundColor(Color.GREEN);
-                }
-
-                break;
-            case R.id.buttonYellow:
-                choosecolor="노랑";
-                textcolor.setText(buttonYellow.getText());
-                buttonYellow.setBackgroundColor(Color.YELLOW);
-                if (!textcolor.getText().toString().equals("하양")){
-                    buttonWhite.setBackgroundColor(Color.WHITE);
-                }
-                Log.e("textco : " , textcolor.getText().toString());
-                break;
-            case R.id.buttonOrange:
-                choosecolor="주황";
-                textcolor.setText(buttonOrange.getText());
-                break;
-            case R.id.buttonPink:
-                choosecolor="분홍";
-                textcolor.setText(buttonPink.getText());
-                break;
-            case R.id.buttonRed:
-                choosecolor="빨강";
-                textcolor.setText(buttonRed.getText());
-                break;
-            case R.id.buttonBrown:
-                choosecolor="갈색";
-                textcolor.setText(buttonBrown.getText());
-                break;
-            case R.id.buttonYellowgreen:
-                choosecolor="연두";
-                textcolor.setText(buttonYellowgreen.getText());
-                break;
-            case R.id.buttonGreen:
-                choosecolor="초록";
-                textcolor.setText(buttonGreen.getText());
-                break;
-            case R.id.buttonBluishgreen:
-                choosecolor="청록";
-                textcolor.setText(buttonBluishgreen.getText());
-                break;
-            case R.id.buttonBlue:
-                choosecolor="파랑";
-                textcolor.setText(buttonBlue.getText());
-                break;
-            case R.id.buttonNavy:
-                choosecolor="남색";
-                textcolor.setText(buttonNavy.getText());
-                break;
-            case R.id.buttonPurple:
-                choosecolor="자주";
-                textcolor.setText(buttonPurple.getText());
-                Log.e("textco : " , textcolor.getText().toString());
-                break;
-            case R.id.buttonViolet:
-                choosecolor="보라";
-                textcolor.setText(buttonViolet.getText());
-                break;
-            case R.id.buttonGray:
-                choosecolor="회색";
-                textcolor.setText(buttonGray.getText());
-                break;
-            case R.id.buttonBlack:
-                choosecolor="검정";
-                textcolor.setText(buttonBlack.getText());
-                break;
-            case R.id.buttonTransparente:
-                textcolor.setText(buttonTransparente.getText());
-                choosecolor="투명";
-                break;
-
-            //////////모양//////////
-
-            case R.id.buttonCircle:
-                chooseshape="원형";
-                textshape.setText(buttonCircle.getText());
-                break;
-            case R.id.buttonOval:
-                chooseshape="타원";
-                textshape.setText(buttonOval.getText());
-                break;
-            case R.id.buttonSemicircle:
-                chooseshape="반원";
-                textshape.setText(buttonSemicircle.getText());
-                break;
-            case R.id.buttonTriangle:
-                chooseshape="삼각형";
-                textshape.setText(buttonTriangle.getText());
-                break;
-            case R.id.buttonSquare:
-                chooseshape="사각형";
-                textshape.setText(buttonSquare.getText());
-                break;
-            case R.id.buttonDiamond:
-                chooseshape="마름모";
-                textshape.setText(buttonDiamond.getText());
-                break;
-            case R.id.buttonRectangle:
-                chooseshape="장방형";
-                textshape.setText(buttonRectangle.getText());
-                break;
-            case R.id.buttonPentagon:
-                chooseshape="오각형";
-                textshape.setText(buttonPentagon.getText());
-                break;
-            case R.id.buttonHexagon:
-                chooseshape="육각형";
-                textshape.setText(buttonHexagon.getText());
-                break;
-            case R.id.buttonOctagon:
-                chooseshape="팔각형";
-                textshape.setText(buttonOctagon.getText());
-                break;
-            case R.id.buttonEct:
-                chooseshape="기타";
-                textshape.setText(buttonEct.getText());
-                break;
-
+            
             //////////제형//////////
             case R.id.buttonTablet:
                 choosetype="나정, 필름코팅정, 서방정, 저작정, 구강붕해정, 장용성필름코팅정, 다층정";
@@ -386,6 +273,10 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         textshape.setText("");
         Toast myToast = Toast.makeText(this.getApplicationContext(),"선택이 초기화 되었습니다.", Toast.LENGTH_SHORT);
         myToast.show();
+
+        for(int i=0; i <colorBtn.length; i++){
+            colorBtn[i].setBackgroundColor(Color.WHITE);
+        }
 
     }
 }

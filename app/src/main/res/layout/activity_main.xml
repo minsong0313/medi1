@@ -52,7 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
-                android:hint="">
+                android:text=" ">
             </TextView>
         </LinearLayout>
 
@@ -63,61 +63,75 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/buttonWhite"
+                android:id="@+id/color_btn1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonWhite"
+                android:background="@android:color/white"
                 android:textSize="10dp" />
 
             <Button
-                android:id="@+id/buttonYellow"
+                android:id="@+id/color_btn2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@android:color/white"
                 android:text="@string/buttonYellow"
                 android:textSize="10sp"/>
             <Button
-                android:id="@+id/buttonOrange"
+                android:id="@+id/color_btn3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonOrange"
+                android:background="@android:color/white"
+
                 android:textSize="10sp"/>
             <Button
-                android:id="@+id/buttonPink"
+                android:id="@+id/color_btn4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonPink"
+                android:background="@android:color/white"
+
                 android:textSize="10sp"/>
             <Button
-                android:id="@+id/buttonRed"
+                android:id="@+id/color_btn5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonRed"
+                android:background="@android:color/white"
+
                 android:textSize="10sp"/>
             <Button
-                android:id="@+id/buttonBrown"
+                android:id="@+id/color_btn6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonBrown"
+                android:background="@android:color/white"
+
                 android:textSize="10sp"/>
             <Button
-                android:id="@+id/buttonYellowgreen"
+                android:id="@+id/color_btn7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonYellowgreen"
+                android:background="@android:color/white"
+
                 android:textSize="10sp"/>
             <Button
-                android:id="@+id/buttonGreen"
+                android:id="@+id/color_btn8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonGreen"
+                android:background="@android:color/white"
+
                 android:textSize="10sp"/>
         </LinearLayout>
         <LinearLayout
@@ -126,59 +140,75 @@
             android:layout_weight="1"
             android:orientation="horizontal">
             <Button
-                android:id="@+id/buttonBluishgreen"
+                android:id="@+id/color_btn9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonBluishgreen"
+                android:background="@android:color/white"
+
                 android:textSize="10sp"/>
             <Button
-                android:id="@+id/buttonBlue"
+                android:id="@+id/color_btn10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonBlue"
+                android:background="@android:color/white"
+
                 android:textSize="10sp"/>
             <Button
-                android:id="@+id/buttonNavy"
+                android:id="@+id/color_btn11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@android:color/white"
+
                 android:text="@string/buttonNavy"
                 android:textSize="10sp"/>
             <Button
-                android:id="@+id/buttonPurple"
+                android:id="@+id/color_btn12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonPurple"
+                android:background="@android:color/white"
+
                 android:textSize="10sp"/>
             <Button
-                android:id="@+id/buttonViolet"
+                android:id="@+id/color_btn13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@android:color/white"
+
                 android:text="@string/buttonViolet"
                 android:textSize="10sp"/>
             <Button
-                android:id="@+id/buttonGray"
+                android:id="@+id/color_btn14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@android:color/white"
+
                 android:text="@string/buttonGray"
                 android:textSize="10sp"/>
             <Button
-                android:id="@+id/buttonBlack"
+                android:id="@+id/color_btn15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@android:color/white"
+
                 android:text="@string/buttonBlack"
                 android:textSize="10sp"/>
             <Button
-                android:id="@+id/buttonTransparente"
+                android:id="@+id/color_btn16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@android:color/white"
+
                 android:text="@string/buttonTransparente"
                 android:textSize="10sp"/>
         </LinearLayout>
@@ -216,42 +246,42 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
                 <Button
-                    android:id="@+id/buttonCircle"
+                    android:id="@+id/shape_btn1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/buttonCircle"
                     android:textSize="10sp"/>
                 <Button
-                    android:id="@+id/buttonOval"
+                    android:id="@+id/shape_btn2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/buttonOval"
                     android:textSize="10sp"/>
                 <Button
-                    android:id="@+id/buttonSemicircle"
+                    android:id="@+id/shape_btn3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/buttonSemicircle"
                     android:textSize="10sp"/>
                 <Button
-                    android:id="@+id/buttonTriangle"
+                    android:id="@+id/shape_btn4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/buttonTriangle"
                     android:textSize="10sp"/>
                 <Button
-                    android:id="@+id/buttonSquare"
+                    android:id="@+id/shape_btn5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/buttonSquare"
                     android:textSize="10sp"/>
                 <Button
-                    android:id="@+id/buttonDiamond"
+                    android:id="@+id/shape_btn6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -265,35 +295,35 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
                 <Button
-                    android:id="@+id/buttonRectangle"
+                    android:id="@+id/shape_btn7"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/buttonRectangle"
                     android:textSize="10sp"/>
                 <Button
-                    android:id="@+id/buttonPentagon"
+                    android:id="@+id/shape_btn8"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/buttonPentagon"
                     android:textSize="10sp"/>
                 <Button
-                    android:id="@+id/buttonHexagon"
+                    android:id="@+id/shape_btn9"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/buttonHexagon"
                     android:textSize="10sp"/>
                 <Button
-                    android:id="@+id/buttonOctagon"
+                    android:id="@+id/shape_btn10"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/buttonOctagon"
                     android:textSize="10sp"/>
                 <Button
-                    android:id="@+id/buttonEct"
+                    android:id="@+id/shape_btn11"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
