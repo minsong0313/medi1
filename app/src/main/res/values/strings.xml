@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">medi1</string>
-    <string name="SearchList">────모양으로 검색────</string>
+    <string name="SearchList">모양으로 검색</string>
     <!--색상 버튼-->
     <string name="Colorlist">색상</string>
     <string name="buttonWhite">하양</string>
@@ -19,6 +19,7 @@
     <string name="buttonGray">회색</string>
     <string name="buttonBlack">검정</string>
     <string name="buttonTransparente">투명</string>
+    <string name="blanktext"> </string>
     <!--모양 버튼-->
     <string name="Shapelist">모양</string>
     <string name="buttonCircle">원형</string>

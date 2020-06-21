@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="모양으로 검색"
+            android:text="@string/SearchList"
             android:textSize="27dp"
             android:textStyle="bold"/>
     </LinearLayout>
@@ -45,21 +45,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/Colorlist"
+                android:textStyle="bold"
                 android:layout_marginRight="2dp"
-                android:textSize="20sp"/>
+                android:textSize="25sp"/>
             <TextView
                 android:id="@+id/choosecolor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
-                android:text=" ">
+                android:text="@string/blanktext">
             </TextView>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="45dp"
             android:orientation="horizontal">
 
             <Button
@@ -68,76 +67,69 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonWhite"
-                android:background="@android:color/white"
-                android:textSize="10dp" />
+                android:background="@drawable/basic_button"
+                android:textSize="12sp" />
 
             <Button
                 android:id="@+id/color_btn2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@android:color/white"
                 android:text="@string/buttonYellow"
-                android:textSize="10sp"/>
+                android:background="@drawable/basic_button"
+                android:textSize="12sp"/>
             <Button
                 android:id="@+id/color_btn3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonOrange"
-                android:background="@android:color/white"
-
-                android:textSize="10sp"/>
+                android:background="@drawable/basic_button"
+                android:textSize="12sp"/>
             <Button
                 android:id="@+id/color_btn4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonPink"
-                android:background="@android:color/white"
-
-                android:textSize="10sp"/>
+                android:background="@drawable/basic_button"
+                android:textSize="12sp"/>
             <Button
                 android:id="@+id/color_btn5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonRed"
-                android:background="@android:color/white"
-
-                android:textSize="10sp"/>
+                android:background="@drawable/basic_button"
+                android:textSize="12sp"/>
             <Button
                 android:id="@+id/color_btn6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonBrown"
-                android:background="@android:color/white"
-
-                android:textSize="10sp"/>
+                android:background="@drawable/basic_button"
+                android:textSize="12sp"/>
             <Button
                 android:id="@+id/color_btn7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonYellowgreen"
-                android:background="@android:color/white"
-
-                android:textSize="10sp"/>
+                android:background="@drawable/basic_button"
+                android:textSize="12sp"/>
             <Button
                 android:id="@+id/color_btn8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonGreen"
-                android:background="@android:color/white"
-
-                android:textSize="10sp"/>
+                android:background="@drawable/basic_button"
+                android:textSize="12sp"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="45dp"
             android:orientation="horizontal">
             <Button
                 android:id="@+id/color_btn9"
@@ -145,72 +137,64 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonBluishgreen"
-                android:background="@android:color/white"
-
-                android:textSize="10sp"/>
+                android:background="@drawable/basic_button"
+                android:textSize="12sp"/>
             <Button
                 android:id="@+id/color_btn10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonBlue"
-                android:background="@android:color/white"
-
-                android:textSize="10sp"/>
+                android:background="@drawable/basic_button"
+                android:textSize="12sp"/>
             <Button
                 android:id="@+id/color_btn11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@android:color/white"
-
+                android:background="@drawable/basic_button"
                 android:text="@string/buttonNavy"
-                android:textSize="10sp"/>
+                android:textSize="12sp"/>
             <Button
                 android:id="@+id/color_btn12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonPurple"
-                android:background="@android:color/white"
-
-                android:textSize="10sp"/>
+                android:background="@drawable/basic_button"
+                android:textSize="12sp"/>
             <Button
                 android:id="@+id/color_btn13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@android:color/white"
-
+                android:background="@drawable/basic_button"
                 android:text="@string/buttonViolet"
-                android:textSize="10sp"/>
+                android:textSize="12sp"/>
             <Button
                 android:id="@+id/color_btn14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@android:color/white"
-
+                android:background="@drawable/basic_button"
                 android:text="@string/buttonGray"
-                android:textSize="10sp"/>
+                android:textSize="12sp"/>
             <Button
                 android:id="@+id/color_btn15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@android:color/white"
-
+                android:background="@drawable/basic_button"
                 android:text="@string/buttonBlack"
-                android:textSize="10sp"/>
+                android:textSize="12sp"/>
             <Button
                 android:id="@+id/color_btn16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@android:color/white"
-
+                android:background="@drawable/basic_button"
                 android:text="@string/buttonTransparente"
-                android:textSize="10sp"/>
+                android:textSize="12sp"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -230,20 +214,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Shapelist"
-                    android:textSize="20sp" />
+                    android:textStyle="bold"
+                    android:textSize="25sp" />
+
                 <TextView
                     android:id="@+id/chooseshape"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15dp"
-                    android:hint="">
-                </TextView>
+                    android:text="@string/blanktext"/>
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
                 android:orientation="horizontal">
                 <Button
                     android:id="@+id/shape_btn1"
@@ -251,48 +234,52 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/buttonCircle"
-                    android:textSize="10sp"/>
+                    android:background="@drawable/basic_button"
+                    android:textSize="12sp"/>
                 <Button
                     android:id="@+id/shape_btn2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/buttonOval"
-                    android:textSize="10sp"/>
+                    android:background="@drawable/basic_button"
+                    android:textSize="12sp"/>
                 <Button
                     android:id="@+id/shape_btn3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/buttonSemicircle"
-                    android:textSize="10sp"/>
+                    android:background="@drawable/basic_button"
+                    android:textSize="12sp"/>
                 <Button
                     android:id="@+id/shape_btn4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/buttonTriangle"
-                    android:textSize="10sp"/>
+                    android:background="@drawable/basic_button"
+                    android:textSize="12sp"/>
                 <Button
                     android:id="@+id/shape_btn5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/buttonSquare"
-                    android:textSize="10sp"/>
+                    android:background="@drawable/basic_button"
+                    android:textSize="12sp"/>
                 <Button
                     android:id="@+id/shape_btn6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/buttonDiamond"
-                    android:textSize="10sp"/>
-
+                    android:background="@drawable/basic_button"
+                    android:textSize="12sp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="45dp"
                 android:orientation="horizontal">
                 <Button
                     android:id="@+id/shape_btn7"
@@ -300,35 +287,40 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/buttonRectangle"
-                    android:textSize="10sp"/>
+                    android:background="@drawable/basic_button"
+                    android:textSize="12sp"/>
                 <Button
                     android:id="@+id/shape_btn8"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/buttonPentagon"
-                    android:textSize="10sp"/>
+                    android:background="@drawable/basic_button"
+                    android:textSize="12sp"/>
                 <Button
                     android:id="@+id/shape_btn9"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/buttonHexagon"
-                    android:textSize="10sp"/>
+                    android:background="@drawable/basic_button"
+                    android:textSize="12sp"/>
                 <Button
                     android:id="@+id/shape_btn10"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/buttonOctagon"
-                    android:textSize="10sp"/>
+                    android:background="@drawable/basic_button"
+                    android:textSize="12sp"/>
                 <Button
                     android:id="@+id/shape_btn11"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:text="@string/buttonEct"
-                    android:textSize="10sp"/>
+                    android:background="@drawable/basic_button"
+                    android:textSize="12sp"/>
             </LinearLayout>
     </LinearLayout>
 
@@ -347,13 +339,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/Typelist"
-                android:textSize="20sp"/>
+                android:textStyle="bold"
+                android:textSize="25sp"/>
             <TextView
                 android:id="@+id/choosetype"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
-                android:hint="">
+                android:text="@string/blanktext">
             </TextView>
         </LinearLayout>
 
@@ -363,33 +355,37 @@
             android:layout_weight="1"
             android:orientation="horizontal">
             <Button
-                android:id="@+id/buttonTablet"
+                android:id="@+id/type_btn1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonTablet"
-                android:textSize="10sp"/>
+                android:background="@drawable/basic_button"
+                android:textSize="12sp"/>
             <Button
-                android:id="@+id/buttonHardcapsule"
+                android:id="@+id/type_btn2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonHardcapsule"
-                android:textSize="10sp"/>
+                android:background="@drawable/basic_button"
+                android:textSize="12sp"/>
             <Button
-                android:id="@+id/buttonSoftcapsul"
+                android:id="@+id/type_btn3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonSoftcapsul"
-                android:textSize="10sp"/>
+                android:background="@drawable/basic_button"
+                android:textSize="12sp"/>
             <Button
-                android:id="@+id/buttonEct2"
+                android:id="@+id/type_btn4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonEct2"
-                android:textSize="10sp"/>
+                android:background="@drawable/basic_button"
+                android:textSize="12sp"/>
 
         </LinearLayout>
     </LinearLayout>
@@ -408,17 +404,23 @@
             android:orientation="horizontal">
         <Button
             android:id="@+id/searchbtn"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="50dp"
             android:text="@string/search"
+            android:textStyle="bold"
+            android:background="@drawable/button_state"
+            android:textColor="@android:color/white"
             android:onClick="click_result"
             android:layout_gravity="center" />
         <Button
             android:id="@+id/researchbtn"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="@string/buttonResearch"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:background="@drawable/button_state"
             android:onClick="click_research"
             android:layout_gravity="center" />
          </LinearLayout>
@@ -486,10 +488,13 @@
             </LinearLayout>
             <Button
                 android:id="@+id/search_back"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="@string/search"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:background="@drawable/button_state"
                 android:onClick="click_markresult" />
         </LinearLayout>
     </LinearLayout>
