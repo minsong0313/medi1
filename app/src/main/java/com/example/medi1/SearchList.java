@@ -28,12 +28,18 @@ public class SearchList extends AppCompatActivity {
     String searchmarkfront;
     String searchmarkback;
 
+
+
+
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(getApplication(),MainActivity.class));
+        //startActivity(new Intent(getApplication(),MainActivity.class));
         super.onBackPressed();
-        finish();
+        //finish();
     }
+
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

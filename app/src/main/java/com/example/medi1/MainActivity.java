@@ -74,7 +74,6 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
 
 
 
-
     TextView textcolor, textshape, texttype;
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -101,7 +100,6 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         settingColorbtn();
         settingShapebtn();
         settingTypebtn();
-
 
     }
 
@@ -309,6 +307,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
        //takeMarkBack();
 
         Intent intent = new Intent(getApplicationContext(),SearchList.class);
+
         intent.putExtra("choosecolor",choosecolor);
         intent.putExtra("chooseshape",chooseshape);
         intent.putExtra("choosetype",choosetype);
@@ -328,7 +327,6 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         takeMarkBack();
 
         Intent intent = new Intent(getApplicationContext(),SearchList.class);
-
         intent.putExtra("searchmarkfront",searchmarkfront);
         intent.putExtra("searchmarkback", searchmarkback);
 
@@ -357,6 +355,11 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
             shapeBtn[i].setBackgroundColor(Color.WHITE);
             shapeBtn[i].setBackgroundResource(R.drawable.basic_button);
             shapeBtn[i].setTextColor(Color.BLACK);
+        }
+        for(int i=0; i <typeBtn.length; i++){
+            typeBtn[i].setBackgroundColor(Color.WHITE);
+            typeBtn[i].setBackgroundResource(R.drawable.basic_button);
+            typeBtn[i].setTextColor(Color.BLACK);
         }
 
     }

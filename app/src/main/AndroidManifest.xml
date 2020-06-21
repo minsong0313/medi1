@@ -22,6 +22,7 @@
         </activity>
 
         <activity android:name=".SearchList"/>
+        <activity android:name=".LookupActivity"/>
     </application>
 
 </manifest>
