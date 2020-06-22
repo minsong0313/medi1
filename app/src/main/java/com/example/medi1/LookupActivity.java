@@ -1,9 +1,5 @@
 package com.example.medi1;
 
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -11,7 +7,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-public class LookupActivity extends SearchList{
+public class LookupActivity extends FormSearchActivity {
     TextView textView;
     TextView detailStr;
     ImageView imageView;

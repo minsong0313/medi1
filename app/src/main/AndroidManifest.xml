@@ -14,14 +14,14 @@
         android:usesCleartextTraffic="true"
         android:largeHeap="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".FormMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".SearchList"/>
+        <activity android:name=".FormSearchActivity"/>
         <activity android:name=".LookupActivity"/>
     </application>
 

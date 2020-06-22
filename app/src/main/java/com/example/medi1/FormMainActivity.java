@@ -1,16 +1,11 @@
 package com.example.medi1;
 
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.res.AssetManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,31 +14,10 @@ import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.reflect.TypeToken;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserFactory;
-
-import java.io.BufferedInputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.lang.reflect.Array;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Map;
 
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
-public class MainActivity extends AppCompatActivity implements Button.OnClickListener {
+public class FormMainActivity extends AppCompatActivity implements Button.OnClickListener {
     private static final String TAG = "Ma";
     private ProgressDialog progressDialog; //로딩중 progressDialog
 
@@ -79,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.form_activity_main);
 
 
         //색상 버튼 눌린것 텍스트뷰로 띄워줄것
@@ -306,7 +280,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
        //takeMarkfront(); // 식별자 앞 edit에 입력한 텍스트값 가져오기
        //takeMarkBack();
 
-        Intent intent = new Intent(getApplicationContext(),SearchList.class);
+        Intent intent = new Intent(getApplicationContext(), FormSearchActivity.class);
 
         intent.putExtra("choosecolor",choosecolor);
         intent.putExtra("chooseshape",chooseshape);
@@ -326,7 +300,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         takeMarkfront(); // 식별자 앞 edit에 입력한 텍스트값 가져오기
         takeMarkBack();
 
-        Intent intent = new Intent(getApplicationContext(),SearchList.class);
+        Intent intent = new Intent(getApplicationContext(), FormSearchActivity.class);
         intent.putExtra("searchmarkfront",searchmarkfront);
         intent.putExtra("searchmarkback", searchmarkback);
 

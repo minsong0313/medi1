@@ -21,30 +21,28 @@ import com.bumptech.glide.Glide;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
+public class FormMyAdapter extends RecyclerView.Adapter<FormMyAdapter.MyViewHolder>{
 
     //private static final int count=1;
 
     private String drugString;
-    private ArrayList<Drug> mList;
+    private ArrayList<FormDrug> mList;
     private LayoutInflater mInflate;
     private Context mContext;
     private String data = null;
     private Intent intent;
     private String searchString;
-    MyAdapter(Context context, ArrayList<Drug> mList) {//생성자를 context와 배열로 초기화해줌
+    FormMyAdapter(Context context, ArrayList<FormDrug> mList) {//생성자를 context와 배열로 초기화해줌
         this.mList = mList;
         this.mInflate = LayoutInflater.from(context);
         this.mContext = context;

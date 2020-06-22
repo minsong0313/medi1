@@ -3,7 +3,7 @@ package com.example.medi1;
 
 import android.graphics.Bitmap;
 
-public class Drug {
+public class FormDrug {
     //리스트에 띄울 목록
     private String name; //품목명
     private String company; // 업소명
