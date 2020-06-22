@@ -35,6 +35,7 @@ import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
 
+    //private static final int count=1;
 
     private String drugString;
     private ArrayList<Drug> mList;
@@ -89,9 +90,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
                         intent = new Intent(mContext, LookupActivity.class);//intent를 초기화해주는 코드
 
                         //앞에는 key값, 뒤에는 실제 값
-                        intent.putExtra("Drug", mList.get(position).getName());//drug의 이름을 넘겨줌
+                        intent.putExtra("Drug", drugString);//drug의 이름을 넘겨줌
                         intent.putExtra("data", data);//파싱한 데이터들을 "data"의 키로 넘겨줌
                         intent.putExtra("image", mList.get(position).getImage());
+                        intent.putExtra("count",1);
                         //이미지의 용량을 작게 해주는 코드
                         //-> intent로 이미지를 넘길 떼 이미지의 용량이  100kb로 제한되어있기 때문에 그 사이즈에 맞춰서 넘겨줘야함
                         //이미지의 용량을 임의로 지정하여 intent로 넘겨주는 코드
@@ -205,8 +207,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
                         if(parser.getName().equals("DOC")){
                             articleEnd = true;
                         }
+                        if(parser.getName().equals("body")){
+                            buffer.append("\n");
+                            buffer.append("※ 허가 취소된 의약품이거나 상세정보를 제공하지 않는 의약품입니다. ※");
+                        }
                         break;
+
                     case XmlPullParser.START_TAG://eventType이 START_TAG일 경우, 태그가 시작되는 부분
+
                         if (parser.getName().equals("item")) {
                             buffer.append("\n");
                         }
@@ -231,13 +239,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
                         if (parser.getName().equals("PARAGRAPH")) {
                             paragraph = true;
                         }
-                        if (parser.getName().equals("EE_DOC_DATA")) ee_doc_data = true;//효능효과
+                        if (parser.getName().equals("EE_DOC_DATA")) {ee_doc_data = true;}
+                        //효능효과
+
                         if (parser.getName().equals("UD_DOC_DATA")){//용법용량
                             ud_doc_data = true;
                         }
                         if (parser.getName().equals("NB_DOC_DATA")){//사용상의주의사항
                             Nb_doc_data = true;
                         }
+
                         break;
 
                     case XmlPullParser.TEXT://eventType이 TEXT일 경우
@@ -249,15 +260,22 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
                                             //parsing부분
                                             String ee_text = parser.getText();//text를 가져옴
                                             //Log.e("GBN_NAME : ", ee_text);
-                                            buffer.append(ee_text);//요소의 TEXT 읽어와서 문자열버퍼에 추가
+                                            //buffer.append(ee_text);//요소의 TEXT 읽어와서 문자열버퍼에 추가
+                                            if(ee_text.contains("<")|| ee_text.contains("&")){//table형태 등 html문서로된 부분이 있으면 변환하여 buffer에 추가해줌
+                                                buffer.append(Html.fromHtml(ee_text));
+
+                                            }else{//html요소가 포함되어있지 않으면 그냥 buffer에 추가해줌
+                                                buffer.append(ee_text);
+                                            }
                                         }
                                     }
                                     buffer.append("\n"); //꼭필요
                                     break;
                                 }
                             }
-                            ee_doc_data = false;
                         }
+
+
                         else if(ud_doc_data) {//용법용량부분을 가져오는 코드
                             if(doc){
                                 if(!articleEnd){
@@ -299,6 +317,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
                             }
                             ud_doc_data = false;//다시 false로 돌리는 초기화함
                         }
+
+
                 }
                 eventType = parser.next();//다음 parser를 찾아옴
             }

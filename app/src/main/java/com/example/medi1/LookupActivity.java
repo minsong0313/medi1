@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,7 +19,7 @@ public class LookupActivity extends SearchList{
     String drugString;
     String str_detailStr;
     String image;
-
+    int count;
 
     @Override
     public void onBackPressed() {
@@ -35,6 +36,8 @@ public class LookupActivity extends SearchList{
         detailStr = findViewById(R.id.detailStr);
         imageView = findViewById(R.id.image);
 
+        count = getIntent().getIntExtra("count",1);
+        Log.e("count값 : ", String.valueOf(count));
 
         //Drug라는 key값으로 NameMyAdapter에서 intent해줄때 넘겨준 값을 가져옴.
         drugString = getIntent().getStringExtra("Drug");//String값으로 받아옴. 이것은 약의 이름을 받아오는것.
