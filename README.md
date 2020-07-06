@@ -207,8 +207,8 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
     }
 ~~~   
 
->>##### 2-2-1 위치 관련 퍼미션 허용과 GPS 활성화   
-#### 위치 관련 퍼미션 허용 여부 검사   
+>>#### 2-2-1 위치 관련 퍼미션 허용과 GPS 활성화   
+##### 위치 관련 퍼미션 허용 여부 검사   
 ~~~java
 @Override
     public void onRequestPermissionsResult(int permsRequestCode,
