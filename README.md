@@ -648,6 +648,13 @@ public class FormMyAdapter extends RecyclerView.Adapter<FormMyAdapter.MyViewHold
     }
 ~~~
 <div>
-<img src="https://user-images.githubusercontent.com/57400913/86566889-64362300-bfa5-11ea-887c-20be6eb94caf.png" width="30%">
-<img src="https://user-images.githubusercontent.com/57400913/86567239-fb02df80-bfa5-11ea-8ea5-f20b52c8ff2b.png" width="30%">
+<img src="https://user-images.githubusercontent.com/57400913/86566889-64362300-bfa5-11ea-887c-20be6eb94caf.png" width="40%">
+<img src="https://user-images.githubusercontent.com/57400913/86567239-fb02df80-bfa5-11ea-8ea5-f20b52c8ff2b.png" width="40%">
+</div>   
+<div>
+<img src="https://user-images.githubusercontent.com/57400913/86567351-33a2b900-bfa6-11ea-83b4-d91234e0b060.png" width="40%">
+<img src="https://user-images.githubusercontent.com/57400913/86567379-3e5d4e00-bfa6-11ea-95b0-eda7e9152b70.png" width="40%">      
+<div>
+<img src="https://user-images.githubusercontent.com/57400913/86567395-43220200-bfa6-11ea-8364-33dfff8e0fdf.png" width="40%">
+<img src="https://user-images.githubusercontent.com/57400913/86567408-46b58900-bfa6-11ea-8548-b4da6b0c02c3.png" width="40%">  
 </div>
