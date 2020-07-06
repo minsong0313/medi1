@@ -557,6 +557,7 @@ public void settingTypebtn(){
 <img src="https://user-images.githubusercontent.com/57400913/86567395-43220200-bfa6-11ea-8364-33dfff8e0fdf.png" width="40%">
 <img src="https://user-images.githubusercontent.com/57400913/86567408-46b58900-bfa6-11ea-8548-b4da6b0c02c3.png" width="40%">  
 </div>   
+
  ##### 검색 결과 Recyclerview로 띄어주기
  1)비트맵 방식으로 이미지를 띄워주었던 2-4-1 약 이름으로 검색 기능의 !!!!!!!!!!!!!!!!와 다르게 Glide로 이미지를 변환한다. 다른 부분만 다르고 동일하다.     
  2)출력된 리스트 중에 상세보기를 원하는 의약품을 클릭했을 시 보여지는 페이지는 2-4-3 약 상세보기 기능에서 설명한다.   
