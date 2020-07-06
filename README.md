@@ -87,4 +87,133 @@ public void settingColorbtn(){
         }
 
     }
+~~~    
+##### 모양 버튼 이벤트   
+색상 버튼 이벤트와 동일한 방식으로 버튼의 배경색 처리를 한다.   
+~~~java
+public void settingShapebtn(){
+        for(int i=0; i <shapeBtn.length; i++){
+            shapebtn_id = "shape_btn" + (i+1); //버튼 아이디값 저장
+            shapeBtn[i] = findViewById(getResources().getIdentifier(shapebtn_id, "id",getPackageName()));
+        }
+
+        for(Button buttonId : shapeBtn){
+            buttonId.setOnClickListener(new View.OnClickListener(){
+
+                @Override
+                public void onClick(View v) {
+                    result_shapebtn = findViewById(v.getId());
+                    result_shapebtn.setBackgroundResource(R.drawable.choose_btton); //해당아이디 버튼의 배경색을 하양으로 바꿈
+                    result_shapebtn.setTextColor(Color.WHITE);
+                    chooseshape = result_shapebtn.getText().toString();
+
+
+                    Log.e("다음 클릭 후 : ", thisshape);
+
+                    for(int j=0; j<shapeBtn.length; j++){
+                        if(!shapeBtn[j].getText().toString().equals(chooseshape)) {
+                            shapeBtn[j].setBackgroundResource(R.drawable.basic_button);
+                            shapeBtn[j].setTextColor(Color.BLACK);
+                        }if(shapeBtn[j].getText().toString().equals(thisshape)){
+                            shapeBtn[j].setBackgroundResource(R.drawable.basic_button);
+                            shapeBtn[j].setTextColor(Color.BLACK);
+                        }
+                    }
+
+                    //  textcolor.setText(result.getText()); // 선택 색상을 보여줄 textview
+
+                    thisshape = textshape.getText().toString();
+                }
+            });
+        }
+    }
+~~~   
+##### 제형 버튼 이벤트
+색상과 모양 버튼의 버튼의 text값과 동일하기 때문에 클릭한 버튼의 text값을 바로 변수에 저장해주었지만   
+제형 버튼은 공공데이터에서 제공하는 파일의 형식이 맞추려면 과정이 복잡해진다   
+(ex.정제류 - 나정, 필름코팅정, 서방정, 저작정, 추어블정(저작정), 구강붕해정, 서방성필름코팅정, 장용성필름코팅정, 다층정, 분산정(현탁정))     
+1)제형 버튼 중 클릭한 버튼의 text값을 choosetype에 저장한다.
+2)버튼의 text값과 json파일에 저장되어있는 제형의 종류를 공통으로 포함된 문자열을 비교한 후에 다시 choosetype에 모든 종류를 저장한다.
+3)이후에 사용자가 선택한 버튼의 배경색만 변경하는 부분은 위의 색상 이벤트에서 설명한것과 동일하다.
+~~~java
+public void settingTypebtn(){
+        for(int i=0; i <typeBtn.length; i++){
+            typebtn_id = "type_btn" + (i+1); //버튼 아이디값 저장
+            typeBtn[i] = findViewById(getResources().getIdentifier(typebtn_id, "id",getPackageName())); //초기화
+        }
+
+        for(Button buttonId : typeBtn){
+            buttonId.setOnClickListener(new View.OnClickListener(){
+
+                @Override
+                public void onClick(View v) {
+                    result_typebtn = findViewById(v.getId());
+                    result_typebtn.setBackgroundResource(R.drawable.choose_btton); //해당아이디 버튼의 배경색을 하양으로 바꿈
+                    result_typebtn.setTextColor(Color.WHITE);
+                    choosetype = result_typebtn.getText().toString();
+
+                    if(choosetype.contains("정")){
+                        choosetype = "나정, 필름코팅정, 서방정, 저작정, 추어블정(저작정), 구강붕해정, 서방성필름코팅정, 장용성필름코팅정, 다층정, 분산정(현탁정), 정제";
+                    }else if(choosetype.contains("경질")){
+                        choosetype = "경질캡슐제|산제, 경질캡슐제|과립제, 경질캡슐제|장용성과립제, 스팬슐, 서방성캡슐제|펠렛";
+                    }else if(choosetype.contains("연질")){
+                        choosetype ="연질캡슐제|현탁상, 연질캡슐제|액상";
+                    } else if(choosetype.contains("기타")){
+                        choosetype = "껌제, 트로키제";
+                    }
+
+                    //texttype.setText(choosetype);
+
+                    Log.e("choosetype ?????", choosetype);
+                    Log.e("다음 클릭 후 : ", thistype);
+
+                    for(int j=0; j<typeBtn.length; j++){
+
+                        if(typeBtn[j].getText().toString().contains("정")){
+                            if(!choosetype.contains("정")) {
+                                typeBtn[j].setBackgroundResource(R.drawable.basic_button);
+                                typeBtn[j].setTextColor(Color.BLACK);
+                            }
+                            if(thisshape.contains("정")) {
+                                typeBtn[j].setBackgroundResource(R.drawable.basic_button);
+                                typeBtn[j].setTextColor(Color.BLACK);
+                            }
+                        }else if(typeBtn[j].getText().toString().contains("경질")){
+                            if(!choosetype.contains("경질")) {
+                                typeBtn[j].setBackgroundResource(R.drawable.basic_button);
+                                typeBtn[j].setTextColor(Color.BLACK);
+                            }
+                            if(thisshape.contains("경질")) {
+                                typeBtn[j].setBackgroundResource(R.drawable.basic_button);
+                                typeBtn[j].setTextColor(Color.BLACK);
+                            }
+                        }else if(typeBtn[j].getText().toString().contains("연질")){
+                            if(!choosetype.contains("연질")) {
+                                typeBtn[j].setBackgroundResource(R.drawable.basic_button);
+                                typeBtn[j].setTextColor(Color.BLACK);
+                            }
+                            if(thisshape.contains("연질")) {
+                                typeBtn[j].setBackgroundResource(R.drawable.basic_button);
+                                typeBtn[j].setTextColor(Color.BLACK);
+                            }
+                        }else {
+                            if(!choosetype.contains("껌제")) {
+                                typeBtn[j].setBackgroundResource(R.drawable.basic_button);
+                                typeBtn[j].setTextColor(Color.BLACK);
+                            }
+                            if(thisshape.contains("제")) {
+                                typeBtn[j].setBackgroundResource(R.drawable.basic_button);
+                                typeBtn[j].setTextColor(Color.BLACK);
+                            }
+                        }
+
+                    }
+
+                    //  textcolor.setText(result.getText()); // 선택 색상을 보여줄 textview
+
+                    thistype = texttype.getText().toString();
+                }
+            });
+        }
+    }
 ~~~
