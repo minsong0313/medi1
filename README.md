@@ -575,3 +575,44 @@ radius의 값으로 반경 2500m로 설정해주었기 때문에 현재 위치�
 <img src="https://user-images.githubusercontent.com/57400913/86556093-40ff7980-bf8d-11ea-96c3-e2160409c832.png" width="30%">       
 <img src="https://user-images.githubusercontent.com/57400913/86556107-4fe62c00-bf8d-11ea-8e5f-bf161c52c0d4.png" width="30%">
 </div>   
+   
+>>#### 2-2-4 ‘동이름’으로 약국 검색   
+
+##### 검색 버튼 눌렀을 때
+~~~java
+public void mOnClick(View v){
+        //edit 검색 후 키보드 숨기기
+        InputMethodManager mInputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        mInputMethodManager.hideSoftInputFromWindow(parser.edit.getWindowToken(),0);
+        getedit = edit.getText().toString();
+        if(getedit.getBytes().length <= 0)
+        {
+            Toast.makeText(getApplicationContext(),"검색어를 입력해주세요.", Toast.LENGTH_SHORT).show();
+        } // edittext에 아무것도 입력하지 않고 검색 버튼을 눌렀을 경우
+        
+        else{
+            handle_btn.setText("검색 결과를 보려면 위로 슬라이딩 해주세요.");
+            switch (v.getId()){
+                case R.id.serach_btn :
+                    new Thread(new Runnable(){
+
+                        @Override
+                        public void run() {
+                            data = parser.getXmlData();
+
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    parser.text.setText(data);
+                                }
+                            });
+                        }
+                    }).start();
+                    break;
+
+            }
+
+        }
+
+    }
+ ~~~
