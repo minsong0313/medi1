@@ -386,6 +386,7 @@ public void settingTypebtn(){
 ~~~
 
 ##### 사용자가 선택 또는 입력한 값을 Intent로 넘겨주기
+1)최종적으로 choosecolor, chooseshape, choosetype과 searchmarkfront, searchmarkback에 저장된 값을 FormSearchActivity.java폴더에 Intent로 넘겨준다.    
 ~~~java
 //검색 결과 버튼
     public void click_result(View view) {
@@ -414,3 +415,130 @@ public void settingTypebtn(){
         startActivity(intent.addFlags(FLAG_ACTIVITY_NEW_TASK));
     }
 ~~~
+6)FormMainActivity.java 폴더에서 Intent로 넘어온 값과 일치하는 조건들을 Json파일에서 찾아 배열로 저장한 후에 어댑터로 결과를 넘겨주는 과정을 처리할 FormSearchActivity.java 폴더를 생성한다.   
+##### 색상, 모양, 제형 버튼으로 검색한 것인지, 식별 표시로 검색한 것인지 구분
+구분하여 서로 다른 메서드를 실행해준다.   
+~~~java
+        if (choosecolor == null && chooseshape == null && choosetype ==null) {
+            marksearchJson();
+            Log.e("dg","식별자");
+        }
+        else {
+            searchJson();
+            Log.e("dg","컬러");
+        }
+        recyclerView = (RecyclerView)findViewById(R.id.rv_recyclerview);//리사이클러뷰 초기화
+        recyclerView.setHasFixedSize(true);//리사이클러뷰 기존 성능 강화
+
+        //리니어레이아웃을 사용하여 리사이클러뷰에 넣어줄것임
+        linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        mAdapter = new FormMyAdapter(getApplicationContext(), list);
+        recyclerView.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
+~~~
+##### 색상, 모양, 제형 버튼으로 검색한 경우
+1)세 개의 카테고리 중 한 카테고리에서만 선택해도 올바른 검색 결과를 나오게 하기 위해서 총 7가지 경우로 나누었다.   
+2)json파일은 key와 value로 구성되어있는데 사용자가 선택한 값과 일치하는 value값을 찾아 품목명, 제품 이미지, 업소명, 분류명, 전문일반구문 key에 해당하는 value값을 사용자에게 보여주기 위해서 setter에 저장한다.   
+ ~~~java
+ //json에서 조건에 맞는 것 검색(색상, 모양, 제형) 7가지.
+    public void searchJson(){
+        try{
+            InputStream is = getAssets().open("druglist.json"); //assests파일에 저장된 druglist_final.json 파일 열기
+            byte[] buffer = new byte[is.available()];
+            is.read(buffer);
+            is.close();
+            String json = new String(buffer, "UTF-8");
+
+            JSONObject jsonObject = new JSONObject(json);
+            JSONArray jsonArray = jsonObject.getJSONArray("druglist"); //json파일에서 의약품리스트의 배열명, jsonArray로 저장
+
+            list = new ArrayList<>();
+
+            for(int i=0; i<jsonArray.length(); i++){
+                jsonObject = jsonArray.getJSONObject(i);
+
+                //'색상, 모양, 제형' 선택하고 검색하기(3개의 카테고리 중 하나만 선택 하고 검색 가능)
+                //1. 색상만 선택된 경우
+                if(choosecolor != null && chooseshape == null && choosetype == null){
+                    if ((jsonObject.getString("색상앞").contains(choosecolor))) {
+                        FormDrug formDrug = new FormDrug();
+                        Log.e("1번 : ", jsonObject.getString("품목명") + jsonObject.getString("색상앞") + jsonObject.getString("의약품제형"));
+
+                        formDrug.setImage(jsonObject.getString("큰제품이미지"));
+                        formDrug.setDrugName(jsonObject.getString("품목명"));
+                        formDrug.setCompany(jsonObject.getString("업소명"));
+                        formDrug.setClassName(jsonObject.getString("분류명"));
+                        formDrug.setEtcOtcName(jsonObject.getString("전문일반구분"));
+
+                        list.add(formDrug);
+                    }
+                }
+                //2. 색상 & 모양
+                else if(choosecolor != null && chooseshape != null && choosetype == null){
+                    if ((jsonObject.getString("색상앞").contains(choosecolor)) && (jsonObject.getString("의약품제형").equals(chooseshape))) {
+                        FormDrug formDrug = new FormDrug();
+                        Log.e("2번 : ", jsonObject.getString("품목명") + jsonObject.getString("색상앞") + jsonObject.getString("의약품제형") + jsonObject.getString("제형코드명") + jsonObject.getString("표시앞") + jsonObject.getString("표시뒤"));
+
+                        formDrug.setImage(jsonObject.getString("큰제품이미지"));
+                        formDrug.setDrugName(jsonObject.getString("품목명"));
+                        formDrug.setCompany(jsonObject.getString("업소명"));
+                        formDrug.setClassName(jsonObject.getString("분류명"));
+                        formDrug.setEtcOtcName(jsonObject.getString("전문일반구분"));
+                        list.add(formDrug);
+                    }
+                } ...
+ ~~~
+ ##### 식별 표시로 검색한 경우
+ 1)식별 표시 앞, 뒤 중 하나만 입력해도 올바른 검색 결과를 나오게 하기 위해서 3가지 경우로 나누었다.   
+ 2)해당하는 의약품의 정보를 보여주기 위한 json파싱 방법은 위와 동일하다.   
+ 
+ ~~~java
+ //json에서 조건에 맞는 것 검색(식별자) 3가지.
+    public void marksearchJson(){
+        try{
+            InputStream is = getAssets().open("druglist.json"); //assests파일에 저장된 druglist_final.json 파일 열기
+            byte[] buffer = new byte[is.available()];
+            is.read(buffer);
+            is.close();
+            String json = new String(buffer, "UTF-8");
+
+            JSONObject jsonObject = new JSONObject(json);
+            JSONArray jsonArray = jsonObject.getJSONArray("druglist"); //json파일에서 의약품리스트의 배열명, jsonArray로 저장
+
+            list = new ArrayList<>();
+
+            for(int i=0; i<jsonArray.length(); i++){
+                jsonObject = jsonArray.getJSONObject(i);
+
+                //8. 표시앞만
+                if(searchmarkfront != null && searchmarkback == null) { //식별자 앞이 입력됐을 경우
+                    if (searchmarkfront.equals(jsonObject.getString("표시앞")))
+                    {
+                        FormDrug formDrug = new FormDrug();
+                        Log.e("8번째 : ", jsonObject.getString("품목명") + jsonObject.getString("색상앞") + jsonObject.getString("의약품제형") + jsonObject.getString("제형코드명") + jsonObject.getString("표시앞") + jsonObject.getString("표시뒤"));
+                        formDrug.setImage(jsonObject.getString("큰제품이미지"));
+                        formDrug.setDrugName(jsonObject.getString("품목명"));
+                        formDrug.setCompany(jsonObject.getString("업소명"));
+                        formDrug.setClassName(jsonObject.getString("분류명"));
+                        formDrug.setEtcOtcName(jsonObject.getString("전문일반구분"));
+                        list.add(formDrug);
+                    }
+
+                } //9. 표시 앞 뒤 둘 다 입력
+                else if(searchmarkfront != null){ //두개 다 입력
+                    if (searchmarkfront.equals(jsonObject.getString("표시앞")) && searchmarkback.equals(jsonObject.getString("표시뒤")))
+                    {
+                        FormDrug formDrug = new FormDrug();
+                        Log.e("9번째 : ", jsonObject.getString("품목명") + jsonObject.getString("색상앞") + jsonObject.getString("의약품제형") + jsonObject.getString("제형코드명") + jsonObject.getString("표시앞") + jsonObject.getString("표시뒤"));
+                        formDrug.setImage(jsonObject.getString("큰제품이미지"));
+                        formDrug.setDrugName(jsonObject.getString("품목명"));
+                        formDrug.setCompany(jsonObject.getString("업소명"));
+                        formDrug.setClassName(jsonObject.getString("분류명"));
+                        formDrug.setEtcOtcName(jsonObject.getString("전문일반구분"));
+                        list.add(formDrug);
+                    }
+                }//10. 표시뒤만
+~~~
+ 
