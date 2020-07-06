@@ -614,3 +614,7 @@ public void mOnClick(View v){
 
     }
  ~~~
+<div>
+<img src="https://user-images.githubusercontent.com/57400913/86556663-e8c97700-bf8e-11ea-958b-60cafe52f9b1.png" width="30%">       
+<img src="https://user-images.githubusercontent.com/57400913/86556685-fe3ea100-bf8e-11ea-97dc-850dda76d829.png" width="30%">
+</div>   
