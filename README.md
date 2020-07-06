@@ -324,8 +324,41 @@ public void settingTypebtn(){
         }
     }
 ~~~   
+##### 색상, 모양, 제형 버튼 선택 초기화
+1)사용자가 선택한 버튼을 초기화하기 위해서 클릭하면 choosecolor, chooseshape, choosetype에 모두 null값이 저장된다.   
+2)사용자가 선택해서 하양색으로 변한 배경색 또한 원래의 배경색으로 돌아온다.   
+~~~java
+//초기화 버튼
+    public void click_research(View view) {
+        choosecolor = null;
+        chooseshape = null;
+        choosetype = null;
+
+        Toast myToast = Toast.makeText(this.getApplicationContext(),"선택이 초기화 되었습니다.", Toast.LENGTH_SHORT);
+        myToast.show();
+
+        for(int i=0; i <colorBtn.length; i++){
+            colorBtn[i].setBackgroundColor(Color.WHITE);
+            colorBtn[i].setBackgroundResource(R.drawable.basic_button);
+            colorBtn[i].setTextColor(Color.BLACK);
+        }
+        for(int i=0; i <shapeBtn.length; i++){
+            shapeBtn[i].setBackgroundColor(Color.WHITE);
+            shapeBtn[i].setBackgroundResource(R.drawable.basic_button);
+            shapeBtn[i].setTextColor(Color.BLACK);
+        }
+        for(int i=0; i <typeBtn.length; i++){
+            typeBtn[i].setBackgroundColor(Color.WHITE);
+            typeBtn[i].setBackgroundResource(R.drawable.basic_button);
+            typeBtn[i].setTextColor(Color.BLACK);
+        }
+
+    }
+}
+~~~     
+
 ##### 의약품의 앞, 뒤에 쓰여있는 식별 표시로 검색하기    
-1)공공데이터로 제공한 파일에서 식별 표시에 없는 의약품의 경우에는 '-'로 저장되어있다.
+1)공공데이터로 제공한 파일에서 식별 표시에 없는 의약품의 경우에는 '-'로 저장되어있다.   
 2)사용자가 앞이나 뒤 한 곳만 입력했을때도 올바른 결과를 나오게 하기 위해서 입력된 값의 길이를 체크한 후에 공백이면 searchamarkfront와 serachmarkback에 '-'를 저장해준다.   
 
 ~~~java
@@ -349,5 +382,35 @@ public void settingTypebtn(){
         }else{
             searchmarkback = this.searchmarkback;
         }
+    }
+~~~
+
+##### 사용자가 선택 또는 입력한 값을 Intent로 넘겨주기
+~~~java
+//검색 결과 버튼
+    public void click_result(View view) {
+
+        Intent intent = new Intent(getApplicationContext(), FormSearchActivity.class);
+
+        intent.putExtra("choosecolor",choosecolor);
+        intent.putExtra("chooseshape",chooseshape);
+        intent.putExtra("choosetype",choosetype);
+
+
+        startActivity(intent.addFlags(FLAG_ACTIVITY_NEW_TASK));
+    }
+
+    //식별자 검색 결과 버튼
+    public void click_markresult(View view) {
+
+        takeMarkfront(); // 식별자 앞 edit에 입력한 텍스트값 가져오기
+        takeMarkBack();
+
+        Intent intent = new Intent(getApplicationContext(), FormSearchActivity.class);
+        intent.putExtra("searchmarkfront",searchmarkfront);
+        intent.putExtra("searchmarkback", searchmarkback);
+
+
+        startActivity(intent.addFlags(FLAG_ACTIVITY_NEW_TASK));
     }
 ~~~
