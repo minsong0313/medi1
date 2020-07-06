@@ -393,8 +393,8 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
 <img src="https://user-images.githubusercontent.com/57400913/86553887-f5e26800-bf86-11ea-9c12-fc412c5b63fc.png" width="30%">       
 <img src="https://user-images.githubusercontent.com/57400913/86553418-a8193000-bf85-11ea-8c6d-da8c8a4f3d24.png" width="30%">
 <img src="https://user-images.githubusercontent.com/57400913/86553428-b1a29800-bf85-11ea-9750-3571cd1ebdb2.png" width="30%">
-</div>
-
+</div>   
+   
 >>##### 2-2-2 사용자의 현재 위치 확인
 
 ##### GPS서비스 상태 파악 후 현재 위치 업데이트 
@@ -425,7 +425,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
         }
     }
 ~~~   
-### Geocoder로 GPS를 주소로 변환   
+##### Geocoder로 GPS를 주소로 변환   
 ~~~java
  public String getCurrentAddress(LatLng latlng) {
 
