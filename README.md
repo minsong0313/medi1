@@ -395,8 +395,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
 <img src="https://user-images.githubusercontent.com/57400913/86553428-b1a29800-bf85-11ea-9750-3571cd1ebdb2.png" width="30%">
 </div>   
    
->>##### 2-2-2 사용자의 현재 위치 확인
-
+>>#### 2-2-2 사용자의 현재 위치 확인
 ##### GPS서비스 상태 파악 후 현재 위치 업데이트 
 ~~~java
  private void startLocationUpdates() {
