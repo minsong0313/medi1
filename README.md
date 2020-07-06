@@ -299,7 +299,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
  ##### 구글맵 실행시 순서   
  
  1)구글맵 실행시 초기 위치
- 처음 실행하면 현재 위치를 찾는데 시간이 걸리기 때문에 초기 위치를 서울역으로 지정해준다.
+ 처음 실행하면 현재 위치를 찾는데 시간이 걸리기 때문에 초기 위치를 서울역으로 지정해준다.   
  public void setDefaultLocation() {
 
         //디폴트 위치, 서울역으로 지정
