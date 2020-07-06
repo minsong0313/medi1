@@ -207,7 +207,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
 ~~~   
 
 >>##### 2-2-1 위치 관련 퍼미션 허용과 GPS 활성화   
-##### 위치 관련 퍼미션 
+##### 위치 관련 퍼미션 허용 여부 검사   
 ~~~java
 @Override
     public void onRequestPermissionsResult(int permsRequestCode,
@@ -295,4 +295,66 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
         });
         builder.create().show();
     }
+ ~~~   
+ ##### 구글맵 실행시 순서   
+ 구글맵이 실행되면 위치 퍼미션과 GPS 활성화 여부를 검사한 후에 모두 활성화 되어있다면 위치 업데이트를 시작한다.   
+ ~~~java
+  @Override
+    public void onMapReady(final GoogleMap googleMap) {
+        mMap = googleMap;
+
+        //런타임 퍼미션 요청 대화상자나 GPS 활성 요청 대화상자 보이기전에
+        //지도의 초기위치를 서울로 이동
+        setDefaultLocation();
+
+        //런타임 퍼미션 처리
+        // 위치 퍼미션을 가지고 있는지 체크
+        int hasFineLocationPermission = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION);
+        int hasCoarseLocationPermission = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_COARSE_LOCATION);
+
+        if (hasFineLocationPermission == PackageManager.PERMISSION_GRANTED &&
+                hasCoarseLocationPermission == PackageManager.PERMISSION_GRANTED) {
+
+            startLocationUpdates(); // 이미 퍼미션 가지고 있다면 위치 업데이트 시작
+        }
+        else {  //퍼미션 요청을 허용한 적이 없다면 퍼미션 요청이 필요.
+
+            // 사용자가 퍼미션 거부를 한 적이 있는 경우
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[0])) {
+
+                //요청을 진행하기 전에 사용자에게 접근 권한이 필요함을 알림
+                Snackbar.make(mLayout, "이 앱을 실행하려면 위치 접근 권한이 필요합니다.",
+                        Snackbar.LENGTH_INDEFINITE).setAction("확인", new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+
+                        //사용자게에 퍼미션 요청을 함 요청 결과는 onRequestPermissionResult에서 수신
+                        ActivityCompat.requestPermissions(MapMainActivity.this, REQUIRED_PERMISSIONS,
+                                PERMISSIONS_REQUEST_CODE);
+                    }
+                }).show();
+
+            } else {
+                //사용자가 퍼미션 거부를 한 적이 없는 경우에는 퍼미션 요청을 바로 함
+                //요청 결과는 onRequestPermissionResult에서 수신
+                ActivityCompat.requestPermissions(this, REQUIRED_PERMISSIONS,
+                        PERMISSIONS_REQUEST_CODE);
+            }
+
+        }
+        //결과 맵에 띄우기
+        mMap.getUiSettings().setMyLocationButtonEnabled(true);
+        // mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+
+            @Override
+            public void onMapClick(LatLng latLng) {
+                Log.d( TAG, "onMapClick :");
+            }
+        });
+    }
  ~~~
+ 
