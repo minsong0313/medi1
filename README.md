@@ -36,7 +36,9 @@
 6)Gradle Scripts - Module app의 build.gradle에 라이브러리를 사용하기 위해 추가한다.   
 추가 후 - Sync Now 클릭
 ~~~java
+dependencies {
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'com.google.android.gms:play-services-location:17.0.0'
     implementation 'noman.placesapi:placesAPI:1.1.3'
+    }
    ~~~
