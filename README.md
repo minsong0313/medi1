@@ -11,6 +11,7 @@
 >### 2-2 약국 찾기
 주변 약국을 찾기 위해 사용하는 지도와 주변 약국의 위치를 사용하기 위해 Google Map과 Google Place를 사용한다.   
 
+##### Google map과 Google Place를 사용하기 위한 
 1)Google Developers Console사이트(https://console.developers.google.com/apis/dashboard)에 접속하여 새 프로젝트를 생성한다.   
 <img src="https://user-images.githubusercontent.com/57400913/86548778-967d5b80-bf78-11ea-874e-6af154fa64f7.png" width="70%">
 
@@ -393,3 +394,6 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
 <img src="https://user-images.githubusercontent.com/57400913/86553418-a8193000-bf85-11ea-8c6d-da8c8a4f3d24.png" width="30%">
 <img src="https://user-images.githubusercontent.com/57400913/86553428-b1a29800-bf85-11ea-9750-3571cd1ebdb2.png" width="30%">
 </div>
+
+>>##### 2-2-2 사용자의 현재 위치 확인
+
