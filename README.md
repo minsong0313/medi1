@@ -297,7 +297,33 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
     }
  ~~~   
  ##### 구글맵 실행시 순서   
- 구글맵이 실행되면 위치 퍼미션과 GPS 활성화 여부를 검사한 후에 모두 활성화 되어있다면 위치 업데이트를 시작한다.   
+ 
+ 1)구글맵 실행시 초기 위치
+ 처음 실행하면 현재 위치를 찾는데 시간이 걸리기 때문에 초기 위치를 서울역으로 지정해준다.
+ public void setDefaultLocation() {
+
+        //디폴트 위치, 서울역으로 지정
+        LatLng DEFAULT_LOCATION = new LatLng(37.553321, 126.972627); //서울역의 위도, 경도
+        String markerTitle = "서울역";
+
+        if (currentMarker != null) currentMarker.remove();
+
+
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(DEFAULT_LOCATION);
+        markerOptions.title(markerTitle);
+        markerOptions.snippet(markerSnippet);
+        markerOptions.draggable(true);
+        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+
+        currentMarker = mMap.addMarker(markerOptions);
+
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(DEFAULT_LOCATION, 15); //zoom 설정 1~21까지
+        mMap.moveCamera(cameraUpdate);
+
+    }
+
+ 2)위치 퍼미션과 GPS 활성화 여부를 검사한 후에 모두 활성화 되어있다면 위치 업데이트를 시작한다.   
  ~~~java
   @Override
     public void onMapReady(final GoogleMap googleMap) {
@@ -356,5 +382,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
             }
         });
     }
- ~~~
+ ~~~   
  
+ <img src="https://user-images.githubusercontent.com/57400913/86553418-a8193000-bf85-11ea-8c6d-da8c8a4f3d24.png" width="70%">
+<img src="https://user-images.githubusercontent.com/57400913/86553428-b1a29800-bf85-11ea-9750-3571cd1ebdb2.png" width="70%">
