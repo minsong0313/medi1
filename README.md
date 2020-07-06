@@ -485,12 +485,12 @@ public void setCurrentLocation(Location location, String markerTitle, String mar
    
 >>#### 2-2-3 현재 위치를 기반으로 주변 약국 검색   
 ##### PlacesListener 인터페이스 구현   
-MainActivity에서 PlacesListener를 구현해주고 인터페이스가 요구하는 메서드 4개를 추가한다.
+MainActivity에서 PlacesListener를 구현해주고 인터페이스가 요구하는 메서드 4개를 추가한다.    
 1)PlacesListener 인터페이스 구현
 ~~~java
 public class MapMainActivity extends AppCompatActivity implements OnMapReadyCallback,                                   v                      ActivityCompat.OnRequestPermissionsResultCallback, PlacesListener {
 ~~~
-   
+     
 2)PlacesListener 인터페이스가 요구하는 메서드 4개 Override로 추가
 ~~~java
 @Override
@@ -509,7 +509,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
     { }
 ~~~
 
-##### 주변 약국 마커 생성하기
+##### 주변 약국 마커 생성하기   
 ~~~java
 public void onPlacesSuccess(final List<Place> places) {
         runOnUiThread(new Runnable() {
@@ -549,7 +549,7 @@ public void onPlacesSuccess(final List<Place> places) {
 
     }
 ~~~   
-    
+      
 ##### 현재 위치를 기반으로 주변 약국 찾기   
 radius의 값으로 반경 2500m로 설정해주었기 때문에 현재 위치를 기반으로 2500m 근처에 있는 약국을 찾는다.   
 내 주변 약국 찾기 버튼을 누를때마다 마커가 클리어되고 새롭게 찾아진 주변 약국 마커가 생성된다.   
@@ -571,3 +571,7 @@ radius의 값으로 반경 2500m로 설정해주었기 때문에 현재 위치�
                 .execute();
     }
 ~~~
+<div>
+<img src="https://user-images.githubusercontent.com/57400913/86556093-40ff7980-bf8d-11ea-96c3-e2160409c832.png" width="30%">       
+<img src="https://user-images.githubusercontent.com/57400913/86556107-4fe62c00-bf8d-11ea-8e5f-bf161c52c0d4.png" width="30%">
+</div>   
