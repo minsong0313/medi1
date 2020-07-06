@@ -488,7 +488,7 @@ public void setCurrentLocation(Location location, String markerTitle, String mar
 MainActivity에서 PlacesListener를 구현해주고 인터페이스가 요구하는 메서드 4개를 추가한다.    
 1)PlacesListener 인터페이스 구현
 ~~~java
-public class MapMainActivity extends AppCompatActivity implements OnMapReadyCallback,                                                       ActivityCompat.OnRequestPermissionsResultCallback, PlacesListener {
+public class MapMainActivity extends AppCompatActivity implements OnMapReadyCallback,     ActivityCompat.OnRequestPermissionsResultCallback, PlacesListener {
 ~~~
      
 2)PlacesListener 인터페이스가 요구하는 메서드 4개 Override로 추가
