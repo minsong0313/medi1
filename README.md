@@ -20,15 +20,23 @@
 
 3)API 라이브러리에서 Maps SDK for Android와 Place API을 사용설정 한다.
 <img src="https://user-images.githubusercontent.com/57400913/86551257-887f0900-bf7f-11ea-8d94-6ea94830123a.png" width="70%">   
+          
+4)Google Service를 사용하기 위해서 Google Play services 라이브러리 패키지를 설치해줘야 한다.   
+안드로이드 스튜디오 - Tools - SDK Manager - SDK Tools탭 클릭 - Google Play services체크 - Apply   
+<img src="https://user-images.githubusercontent.com/57400913/86551723-e06a3f80-bf80-11ea-98ca-94354ef16e20.png" width="70%"> 
 
-4)AndroidManifest.xml파일의 <application>태그의 하위 요소로 추가한다.   
- 2)에서 발급받은 API키를 추가한다.
+5)AndroidManifest.xml파일의 <application>태그의 하위 요소로 추가한다.   
+  2)에서 발급받은 API키를 추가한다.
 ~~~jave
 <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="발급받은 API키"/>
 ~~~   
-          
-5)Google Service를 사용하기 위해서 Google Play services 라이브러리 패키지를 설치해줘야 한다.
-안드로이드 스튜디오 - Tools - SDK Manager - SDK Tools탭 클릭 - Google Play services체크 - Apply   
-<img src="https://user-images.githubusercontent.com/57400913/86551723-e06a3f80-bf80-11ea-98ca-94354ef16e20.png" width="70%"> 
+
+6)Gradle Scripts - Module app의 build.gradle에 라이브러리를 사용하기 위해 추가한다.   
+추가 후 - Sync Now 클릭
+~~~java
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+    implementation 'noman.placesapi:placesAPI:1.1.3'
+   ~~~
