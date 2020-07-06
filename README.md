@@ -204,4 +204,95 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
         });
 
     }
-    ~~~
+~~~   
+
+>>##### 2-2-1 위치 관련 퍼미션 허용과 GPS 활성화   
+##### 위치 관련 퍼미션 
+~~~java
+@Override
+    public void onRequestPermissionsResult(int permsRequestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grandResults) {
+
+        if ( permsRequestCode == PERMISSIONS_REQUEST_CODE && grandResults.length == REQUIRED_PERMISSIONS.length) {
+
+            // 요청 코드가 PERMISSIONS_REQUEST_CODE 이고, 요청한 퍼미션 개수만큼 수신되었다면
+
+            boolean check_result = true;
+
+
+            // 퍼미션 허용됐는지 체크
+            for (int result : grandResults) {
+                if (result != PackageManager.PERMISSION_GRANTED) {
+                    check_result = false;
+                    break;
+                }
+            }
+
+            if ( check_result ) {
+                // 퍼미션을 허용했다면 위치 업데이트를 시작
+                startLocationUpdates();
+            }
+
+            else {
+
+                // 거부한 퍼미션이 있다면 앱을 사용할 수 없는 이유를 설명해주고 앱을 종료함
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[0])
+                        || ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[1])) {
+
+
+                    //사용자가 퍼미션을 거부했을때 뜨는 메시지
+                    Snackbar.make(mLayout, "퍼미션이 거부되었습니다. 앱을 다시 실행하여 퍼미션을 허용해주세요. ",
+                            Snackbar.LENGTH_INDEFINITE).setAction("확인", new View.OnClickListener() {
+
+                        @Override
+                        public void onClick(View view) {
+                            finish();
+                        }
+                    }).show();
+
+                }else {
+
+                    //사용자가 "다시 묻지 않음"을 누르고 퍼미션을 거부하면 설정-앱 정보에서 퍼미션을 허용해야 사용 가능함을 알림
+                    Snackbar.make(mLayout, "퍼미션이 거부되었습니다. 활성화하려면 설정-앱 정보 에서 퍼미션을 허용해주세요. ",
+                            Snackbar.LENGTH_INDEFINITE).setAction("확인", new View.OnClickListener() {
+
+                        @Override
+                        public void onClick(View view) {
+
+                            finish();
+                        }
+                    }).show();
+                }
+            }
+
+        }
+    }
+ ~~~   
+ 
+##### GPS활성화 여부 검사 
+~~~java
+    private void showDialogForLocationServiceSetting() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(MapMainActivity.this);
+        builder.setTitle("위치 서비스 비활성화");
+        builder.setMessage("앱을 사용하기 위해서는 위치 서비스가 필요합니다.\n"
+                + "위치 설정을 수정하실래요?");
+        builder.setCancelable(true);
+        builder.setPositiveButton("설정", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                Intent callGPSSettingIntent
+                        = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivityForResult(callGPSSettingIntent, GPS_ENABLE_REQUEST_CODE);
+            }
+        });
+        builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+            }
+        });
+        builder.create().show();
+    }
+ ~~~
