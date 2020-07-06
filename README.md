@@ -397,3 +397,82 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
 
 >>##### 2-2-2 사용자의 현재 위치 확인
 
+##### GPS서비스 상태 파악 후 현재 위치 업데이트 
+~~~java
+ private void startLocationUpdates() {
+
+        if (!checkLocationServicesStatus()) {
+            Log.d(TAG, "startLocationUpdates : call showDialogForLocationServiceSetting");
+            showDialogForLocationServiceSetting();//gps비활성화 상태일때 서비스 세팅 메서드 호출
+        }
+        else {
+            //gps활성화 되어있으면 퍼미션 확인
+            int hasFineLocationPermission = ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.ACCESS_FINE_LOCATION);
+            int hasCoarseLocationPermission = ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.ACCESS_COARSE_LOCATION);
+
+            if (hasFineLocationPermission != PackageManager.PERMISSION_GRANTED ||
+                    hasCoarseLocationPermission != PackageManager.PERMISSION_GRANTED   ) {
+                return;
+            }
+
+            mFusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper());
+
+            if (checkPermission())
+                mMap.setMyLocationEnabled(true);
+
+        }
+    }
+~~~   
+### Geocoder로 GPS를 주소로 변환   
+~~~java
+ public String getCurrentAddress(LatLng latlng) {
+
+        //지오코더... GPS를 주소로 변환
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+
+        List<Address> addresses;
+
+        try {
+            addresses = geocoder.getFromLocation(
+                    latlng.latitude,
+                    latlng.longitude,
+                    1);
+        } catch (IOException ioException) {
+            //네트워크 문제
+            Toast.makeText(this, "지오코더 서비스 사용불가", Toast.LENGTH_LONG).show();
+            return "지오코더 서비스 사용불가";
+        } catch (IllegalArgumentException illegalArgumentException) {
+            Toast.makeText(this, "잘못된 GPS 좌표", Toast.LENGTH_LONG).show();
+            return "잘못된 GPS 좌표";
+
+        }
+
+        if (addresses == null || addresses.size() == 0) {
+            Toast.makeText(this, "주소 미발견", Toast.LENGTH_LONG).show();
+            return "주소 미발견";
+
+        } else {
+            Address address = addresses.get(0);
+            return address.getAddressLine(0).toString();
+        }
+    }
+ ~~~   
+    
+##### 현재 위치에 마커 생성하기   
+~~~java
+public void setCurrentLocation(Location location, String markerTitle, String markerSnippet) {
+        if (currentMarker != null) currentMarker.remove();
+
+        LatLng currentLatLng = new LatLng(location.getLatitude(), location.getLongitude());
+
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(currentLatLng);
+        markerOptions.title(markerTitle);
+        markerOptions.snippet(markerSnippet);
+        markerOptions.draggable(true);
+        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+        currentMarker = mMap.addMarker(markerOptions);
+    }
+~~~
