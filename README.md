@@ -41,5 +41,50 @@ public class FormMainActivity extends AppCompatActivity {
     Button result_typebtn; //버튼의 id값 저장
     private String typebtn_id; //버튼의 id값
     private String thistype; // 비교할 색상 값
-    ~~~
+~~~
     
+##### 색상 버튼 이벤트
+choosecolor는 사용자가 선택한 버튼에 맞는 검색 결과를 보여주기 위한 값을 저장하는 변수이며, thiscolor는 사용자가 누른 버튼의 배경색만 변경해주기 위한 값을 저장하는 변수이다.   
+
+1)사용자가 누른 버튼의 배경색을 하양색으로 변경하고 choosecolor와 thiscolor에 버튼의 text값을 저장한다.   
+2)사용자가 버튼을 누를때마다 choosecolor와 thiscolor의 값이 바뀐다.   
+3)사용자가 누른 버튼의 색만 변경해주기 위해서 버튼을 누를 때마다 반복문을 이용해서 버튼의 수만큼 각 버튼의 text값과 현재 선택한 값이    choosecolor를 비교해서 값이 다르다면 원래의 색으로 변경해준다.    
+4)또, 바로 이 전에 누른 버튼의 text값과 thiscolr의 값을 비교해주어 같다면 배경색을 원래의 색으로 변경해준다.   
+~~~java
+public void settingColorbtn(){
+        for(int i=0; i <colorBtn.length; i++){
+            colorbtn_id = "color_btn" + (i+1); //버튼 아이디값 저장
+            colorBtn[i] = findViewById(getResources().getIdentifier(colorbtn_id, "id",getPackageName())); //버튼 초기화
+
+        }
+
+        for(Button buttonId : colorBtn){
+            buttonId.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    result_colorbtn = findViewById(v.getId());
+                    result_colorbtn.setBackgroundResource(R.drawable.choose_btton); //해당아이디 버튼의 배경색을 바꿈
+                    result_colorbtn.setTextColor(Color.WHITE);
+                    choosecolor = result_colorbtn.getText().toString(); //선택 색상을 저장
+
+                    //////여기서 for문으로 thiscolor랑 result.getText.toString()비교해서 배경색 다시 바꿔주기
+                    Log.e("다음 클릭 후 : ", thiscolor);
+
+                    for(int j=0; j<colorBtn.length; j++){
+                        if(!colorBtn[j].getText().toString().equals(choosecolor)) {
+                            colorBtn[j].setBackgroundResource(R.drawable.basic_button);
+                            colorBtn[j].setTextColor(Color.BLACK);
+                        }if(colorBtn[j].getText().toString().equals(thiscolor)){
+                            colorBtn[j].setBackgroundResource(R.drawable.basic_button);
+                            colorBtn[j].setTextColor(Color.BLACK);
+                        }
+                    }
+
+                    thiscolor = textcolor.getText().toString();
+
+                }
+            });
+        }
+
+    }
+~~~
