@@ -8,3 +8,5 @@
 <img src="https://user-images.githubusercontent.com/57400913/86558552-a4d97080-bf94-11ea-89b7-8f1752c71524.png" width="40%">
 </div>
    
+3)app폴더 아래에 assets폴더를 생성한 후에 json으로 변환한 파일을 넣어준다.
+<img src="https://user-images.githubusercontent.com/57400913/86558778-4234a480-bf95-11ea-82fb-facc8f9ec789.png" width="40%">
