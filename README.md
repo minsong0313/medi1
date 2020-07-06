@@ -11,8 +11,8 @@
 3)app폴더 아래에 assets폴더를 생성한 후에 json으로 변환한 파일을 넣어준다.
 <img src="https://user-images.githubusercontent.com/57400913/86558778-4234a480-bf95-11ea-82fb-facc8f9ec789.png" width="70%">
 
-4)사용자가 검색한 의약품의 정보들을 저장하기 위한 FormDrug.java 폴더를 생성한다.
-검색한 의약품에 해당하는 품목명, 업소명, 이미지, 분류명, 전문/일반 구분을 사용자에게 제공하기 위해서 getter, setter로 받아오고 불러오기 위함이다.     
+4)사용자가 검색한 의약품의 정보들을 저장하기 위한 FormDrug.java 폴더를 생성한다.   
+검색한 의약품에 해당하는 품목명, 업소명, 이미지, 분류명, 전문/일반 구분을 사용자에게 제공하기 위해서 getter, setter로 받아오고 불러오기 위함이다.  
 ~~~java
 public class FormDrug {
     //리스트에 띄울 목록
@@ -116,7 +116,9 @@ public class FormDrug {
 }
 ~~~    
 
-5)mMainActivity.java 폴더를 생성한다.
+5)FormMainActivity.java 폴더를 생성한다.   
+색상, 모양, 제형 카테고리에서 사용자가 선택한 것을 처리한다.     
+식별자로 검색할 때, 사용자가 검색하기 위해 Edittext에 입력한 값을 처리한다.      
 ##### 색상, 모양, 제형 버튼을 클릭하기 위한 버튼들 배열로 생성, 초기화
 ~~~java
 public class FormMainActivity extends AppCompatActivity {
@@ -319,6 +321,33 @@ public void settingTypebtn(){
                     thistype = texttype.getText().toString();
                 }
             });
+        }
+    }
+~~~   
+##### 의약품의 앞, 뒤에 쓰여있는 식별 표시로 검색하기    
+1)공공데이터로 제공한 파일에서 식별 표시에 없는 의약품의 경우에는 '-'로 저장되어있다.
+2)사용자가 앞이나 뒤 한 곳만 입력했을때도 올바른 결과를 나오게 하기 위해서 입력된 값의 길이를 체크한 후에 공백이면 searchamarkfront와 serachmarkback에 '-'를 저장해준다.   
+
+~~~java
+//식별자 앞 edittext값 초기화, 저장
+    public void takeMarkfront(){
+        EditText markfront = (EditText) findViewById(R.id.mark_front);
+        searchmarkfront = markfront.getText().toString();
+        if(searchmarkfront.length() == 0){
+            searchmarkfront = null; // 입력된 값이 없을때 '-'로 저장
+        }else {
+            searchmarkfront=this.searchmarkfront;
+        }
+    }
+
+    //식별자 뒤 edittext값 초기화, 저장
+    public void takeMarkBack(){
+        EditText markback = (EditText) findViewById(R.id.mark_Back);
+        searchmarkback = markback.getText().toString();
+        if(searchmarkback.length() == 0){
+            searchmarkback = null;
+        }else{
+            searchmarkback = this.searchmarkback;
         }
     }
 ~~~
