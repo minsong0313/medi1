@@ -527,6 +527,7 @@ public void onPlacesSuccess(final List<Place> places) {
     
 ##### 현재 위치를 기반으로 주변 약국 찾기   
 radius의 값으로 반경 2500m로 설정해주었기 때문에 현재 위치를 기반으로 2500m 근처에 있는 약국을 찾는다.   
+내 주변 약국 찾기 버튼을 누를때마다 마커가 클리어되고 새롭게 찾아진 주변 약국 마커가 생성된다.   
 ~~~java
     public void showPlaceInformaiton(LatLng location)
     {
