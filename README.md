@@ -481,3 +481,67 @@ public void setCurrentLocation(Location location, String markerTitle, String mar
 <img src="https://user-images.githubusercontent.com/57400913/86555113-79ea1f00-bf8a-11ea-8ae5-dce9c8927e97.png" width="30%">       
 <img src="https://user-images.githubusercontent.com/57400913/86555039-40b1af00-bf8a-11ea-9188-8bb074153239.png" width="30%">
 </div>   
+   
+   
+>>#### 2-2-3 현재 위치를 기반으로 주변 약국 검색
+##### 주변 약국 마커 생성하기
+~~~java
+public void onPlacesSuccess(final List<Place> places) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                for (noman.googleplaces.Place place : places) {
+
+                    LatLng latLng
+                            = new LatLng(place.getLatitude()
+                            , place.getLongitude());
+
+                    String markerSnippet = getCurrentAddress(latLng);
+
+                    MarkerOptions markerOptions = new MarkerOptions();
+                    markerOptions.position(latLng);
+                    markerOptions.title(place.getName());
+                    markerOptions.snippet(markerSnippet);
+
+                    //약국 마커 아이콘 바꾸기
+                    BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.drawable.marker6);
+                    Bitmap b=bitmapdraw.getBitmap();
+                    Bitmap smallMarker = Bitmap.createScaledBitmap(b, 100, 150, false);
+                    markerOptions.icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
+                    Marker item = mMap.addMarker(markerOptions);
+
+                    previous_marker.add(item);
+                }
+
+                //중복 마커 제거
+                HashSet<Marker> hashSet = new HashSet<Marker>();
+                hashSet.addAll(previous_marker);
+                previous_marker.clear();
+                previous_marker.addAll(hashSet);
+
+            }
+        });
+
+    }
+~~~   
+    
+##### 현재 위치를 기반으로 주변 약국 찾기   
+radius의 값으로 반경 2500m로 설정해주었기 때문에 현재 위치를 기반으로 2500m 근처에 있는 약국을 찾는다.   
+~~~java
+    public void showPlaceInformaiton(LatLng location)
+    {
+        mMap.clear();//지도 클리어
+
+        if (previous_marker != null)
+            previous_marker.clear();//지역정보 마커 클리어
+
+        new NRPlaces.Builder()
+                .listener(MapMainActivity.this)
+                .key("발급받은 자신의 API 키")
+                .latlng(location.latitude, location.longitude)//현재 위치
+                .radius(2500)// 반경
+                .type(PlaceType.PHARMACY) //약국
+                .build()
+                .execute();
+    }
+~~~
