@@ -11,3 +11,4 @@
 >### 2-2 약국 찾기
 Google Map을 활용하여 지도를 구현한다.
 1)Google Cloud Platform 사이트에서 새 프로젝트를 생성한다. 
+![image](https://user-images.githubusercontent.com/57400913/86548778-967d5b80-bf78-11ea-874e-6af154fa64f7.png)
