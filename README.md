@@ -483,7 +483,32 @@ public void setCurrentLocation(Location location, String markerTitle, String mar
 </div>   
    
    
->>#### 2-2-3 현재 위치를 기반으로 주변 약국 검색
+>>#### 2-2-3 현재 위치를 기반으로 주변 약국 검색   
+##### PlacesListener 인터페이스 구현   
+MainActivity에서 PlacesListener를 구현해주고 인터페이스가 요구하는 메서드 4개를 추가한다.
+1)PlacesListener 인터페이스 구현
+~~~java
+public class MapMainActivity extends AppCompatActivity implements OnMapReadyCallback,                                   v                      ActivityCompat.OnRequestPermissionsResultCallback, PlacesListener {
+~~~
+   
+2)PlacesListener 인터페이스가 요구하는 메서드 4개 Override로 추가
+~~~java
+@Override
+    public void onPlacesFailure(PlacesException e) { }
+
+    @Override
+    public void onPlacesStart() { }
+
+    @Override //구글 플레이스에서 가져온 정보 지도에 표시하기
+    public void onPlacesSuccess(final List<Place> places) { }
+
+    @Override
+    public void onPlacesFinished() { }
+
+    public void showPlaceInformaiton(LatLng location)
+    { }
+~~~
+
 ##### 주변 약국 마커 생성하기
 ~~~java
 public void onPlacesSuccess(final List<Place> places) {
