@@ -323,10 +323,12 @@ public void settingTypebtn(){
             });
         }
     }
-~~~   
+~~~      
+
 ##### 색상, 모양, 제형 버튼 선택 초기화
 1)사용자가 선택한 버튼을 초기화하기 위해서 클릭하면 choosecolor, chooseshape, choosetype에 모두 null값이 저장된다.   
 2)사용자가 선택해서 하양색으로 변한 배경색 또한 원래의 배경색으로 돌아온다.   
+3)초기화 되었다는 Toast가 뜬다.   
 ~~~java
 //초기화 버튼
     public void click_research(View view) {
@@ -356,6 +358,7 @@ public void settingTypebtn(){
     }
 }
 ~~~     
+<img src="https://user-images.githubusercontent.com/57400913/86567020-a3647400-bfa5-11ea-8dee-0fdac8278d3d.png" width="70%">   
 
 ##### 의약품의 앞, 뒤에 쓰여있는 식별 표시로 검색하기    
 1)공공데이터로 제공한 파일에서 식별 표시에 없는 의약품의 경우에는 '-'로 저장되어있다.   
@@ -644,3 +647,7 @@ public class FormMyAdapter extends RecyclerView.Adapter<FormMyAdapter.MyViewHold
         }
     }
 ~~~
+<div>
+<img src="https://user-images.githubusercontent.com/57400913/86566889-64362300-bfa5-11ea-887c-20be6eb94caf.png" width="30%">
+<img src="https://user-images.githubusercontent.com/57400913/86567239-fb02df80-bfa5-11ea-8ea5-f20b52c8ff2b.png" width="30%">
+</div>
