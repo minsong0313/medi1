@@ -395,6 +395,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
 <img src="https://user-images.githubusercontent.com/57400913/86553428-b1a29800-bf85-11ea-9750-3571cd1ebdb2.png" width="30%">
 </div>   
    
+   
 >>#### 2-2-2 사용자의 현재 위치 확인
 ##### GPS서비스 상태 파악 후 현재 위치 업데이트 
 ~~~java
@@ -475,3 +476,8 @@ public void setCurrentLocation(Location location, String markerTitle, String mar
         currentMarker = mMap.addMarker(markerOptions);
     }
 ~~~
+
+<div>
+<img src="https://user-images.githubusercontent.com/57400913/86555113-79ea1f00-bf8a-11ea-8ae5-dce9c8927e97.png" width="30%">       
+<img src="https://user-images.githubusercontent.com/57400913/86555039-40b1af00-bf8a-11ea-9188-8bb074153239.png" width="30%">
+</div>   
