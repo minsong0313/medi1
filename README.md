@@ -358,7 +358,7 @@ public void settingTypebtn(){
     }
 }
 ~~~     
-<img src="https://user-images.githubusercontent.com/57400913/86567020-a3647400-bfa5-11ea-8dee-0fdac8278d3d.png" width="70%">   
+<img src="https://user-images.githubusercontent.com/57400913/86567020-a3647400-bfa5-11ea-8dee-0fdac8278d3d.png" width="40%">   
 
 ##### 의약품의 앞, 뒤에 쓰여있는 식별 표시로 검색하기    
 1)공공데이터로 제공한 파일에서 식별 표시에 없는 의약품의 경우에는 '-'로 저장되어있다.   
@@ -492,7 +492,12 @@ public void settingTypebtn(){
                         list.add(formDrug);
                     }
                 } ...
- ~~~
+ ~~~   
+ <div>
+<img src="https://user-images.githubusercontent.com/57400913/86566889-64362300-bfa5-11ea-887c-20be6eb94caf.png" width="40%">
+<img src="https://user-images.githubusercontent.com/57400913/86567239-fb02df80-bfa5-11ea-8ea5-f20b52c8ff2b.png" width="40%">
+</div>    
+
  ##### 식별 표시로 검색한 경우
  1)식별 표시 앞, 뒤 중 하나만 입력해도 올바른 검색 결과를 나오게 하기 위해서 3가지 경우로 나누었다.   
  2)해당하는 의약품의 정보를 보여주기 위한 json파싱 방법은 위와 동일하다.   
@@ -544,6 +549,14 @@ public void settingTypebtn(){
                 }//10. 표시뒤만
 ~~~
  3)list에 배열로 결과를 저장하고 FormMyAdapter.java 폴더를 생성한 후에 넘겨준다.   
+ <div>
+<img src="https://user-images.githubusercontent.com/57400913/86567351-33a2b900-bfa6-11ea-83b4-d91234e0b060.png" width="40%">
+<img src="https://user-images.githubusercontent.com/57400913/86567379-3e5d4e00-bfa6-11ea-95b0-eda7e9152b70.png" width="40%">  
+ </div>   
+ <div>
+<img src="https://user-images.githubusercontent.com/57400913/86567395-43220200-bfa6-11ea-8364-33dfff8e0fdf.png" width="40%">
+<img src="https://user-images.githubusercontent.com/57400913/86567408-46b58900-bfa6-11ea-8548-b4da6b0c02c3.png" width="40%">  
+</div>   
  ##### 검색 결과 Recyclerview로 띄어주기
  1)비트맵 방식으로 이미지를 띄워주었던 2-4-1 약 이름으로 검색 기능의 !!!!!!!!!!!!!!!!와 다르게 Glide로 이미지를 변환한다. 다른 부분만 다르고 동일하다.     
  2)출력된 리스트 중에 상세보기를 원하는 의약품을 클릭했을 시 보여지는 페이지는 2-4-3 약 상세보기 기능에서 설명한다.   
@@ -647,14 +660,6 @@ public class FormMyAdapter extends RecyclerView.Adapter<FormMyAdapter.MyViewHold
         }
     }
 ~~~
-<div>
-<img src="https://user-images.githubusercontent.com/57400913/86566889-64362300-bfa5-11ea-887c-20be6eb94caf.png" width="40%">
-<img src="https://user-images.githubusercontent.com/57400913/86567239-fb02df80-bfa5-11ea-8ea5-f20b52c8ff2b.png" width="40%">
-</div>   
-<div>
-<img src="https://user-images.githubusercontent.com/57400913/86567351-33a2b900-bfa6-11ea-83b4-d91234e0b060.png" width="40%">
-<img src="https://user-images.githubusercontent.com/57400913/86567379-3e5d4e00-bfa6-11ea-95b0-eda7e9152b70.png" width="40%">      
-<div>
-<img src="https://user-images.githubusercontent.com/57400913/86567395-43220200-bfa6-11ea-8364-33dfff8e0fdf.png" width="40%">
-<img src="https://user-images.githubusercontent.com/57400913/86567408-46b58900-bfa6-11ea-8548-b4da6b0c02c3.png" width="40%">  
-</div>
+  
+    
+
