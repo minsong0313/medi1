@@ -298,9 +298,8 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
     }
  ~~~   
 
- 1)구글맵 실행시 초기 위치 
- ##### 지도 초기 위치 설정
- 처음 실행하면 현재 위치를 찾는데 시간이 걸리기 때문에 초기 위치를 서울역으로 지정해준다.   
+ 1)처음 실행하면 현재 위치를 찾는데 시간이 걸리기 때문에 초기 위치를 서울역으로 지정해준다.   
+ ##### 지도 실행시 초기 위치로 
  ~~~java
  public void setDefaultLocation() {
 
@@ -326,9 +325,8 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
     }
 ~~~
 
- 2)위치 업데이트
- ##### 위치 퍼미션과 GPS 활성화 여부를 검사한 후에 모두 활성화 되어있다면 위치 업데이트를 시작 
- 
+ 2)위치 퍼미션과 GPS 활성화 여부를 검사한 후에 모두 활성화 되어있다면 위치 업데이트를 시작한다.    
+ ##### 위치 업데이트    
  ~~~java
   @Override
     public void onMapReady(final GoogleMap googleMap) {
