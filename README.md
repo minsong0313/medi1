@@ -11,7 +11,7 @@
 >### 2-2 약국 찾기
 주변 약국을 찾기 위해 사용하는 지도와 주변 약국의 위치를 사용하기 위해 Google Map과 Google Place를 사용한다.   
 
-##### Google map과 Google Place를 사용하기 위한 
+##### Google map과 Google Place를 사용하기 위한 초기작업   
 1)Google Developers Console사이트(https://console.developers.google.com/apis/dashboard)에 접속하여 새 프로젝트를 생성한다.   
 <img src="https://user-images.githubusercontent.com/57400913/86548778-967d5b80-bf78-11ea-874e-6af154fa64f7.png" width="70%">
 
@@ -208,7 +208,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
 ~~~   
 
 >>##### 2-2-1 위치 관련 퍼미션 허용과 GPS 활성화   
-##### 위치 관련 퍼미션 허용 여부 검사   
+# 위치 관련 퍼미션 허용 여부 검사   
 ~~~java
 @Override
     public void onRequestPermissionsResult(int permsRequestCode,
