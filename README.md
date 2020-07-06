@@ -41,4 +41,167 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:17.0.0'
     implementation 'noman.placesapi:placesAPI:1.1.3'
     }
-   ~~~
+   ~~~   
+   
+7)MapMainActivity.java를 만들고 지도를 생성해준다.
+~~~java
+package com.example.androidlogin;
+
+import android.Manifest;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
+import android.os.Bundle;
+import android.os.Looper;
+import android.util.Log;
+import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.snackbar.Snackbar;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
+
+import noman.googleplaces.NRPlaces;
+import noman.googleplaces.Place;
+import noman.googleplaces.PlaceType;
+import noman.googleplaces.PlacesException;
+import noman.googleplaces.PlacesListener;
+
+public class MapMainActivity extends AppCompatActivity implements OnMapReadyCallback, ActivityCompat.OnRequestPermissionsResultCallback, PlacesListener {
+    PharmParser parser = new PharmParser();
+    String data;
+    private GoogleMap mMap;
+    private Marker currentMarker = null;
+    Button handle_btn;
+    EditText edit;
+    String getedit; //약국 동이름으로 검색하는 edittext
+
+    private static final String TAG = "googlemap_example";
+    private static final int GPS_ENABLE_REQUEST_CODE = 1000; //권한 설정을 한 activity에 request값으로 받아올 변수 설정
+    private static final int UPDATE_INTERVAL_MS = 1000;  // 1초
+    private static final int FASTEST_UPDATE_INTERVAL_MS = 500; // 0.5초
+
+    // onRequestPermissionsResult에서 수신된 결과에서 ActivityCompat.requestPermissions를 사용한 퍼미션 요청을 구별하기 위해 사용
+    private static final int PERMISSIONS_REQUEST_CODE = 100;
+    boolean needRequest = false;
+
+
+    // 앱을 실행하기 위해 필요한 퍼미션 정의
+    String[] REQUIRED_PERMISSIONS  = {Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION};  // 외부 저장소
+
+    Location mCurrentLocatiion;
+    LatLng currentPosition;
+
+    private FusedLocationProviderClient mFusedLocationClient;
+    private LocationRequest locationRequest;
+    private Location location;
+
+    private View mLayout;  // Snackbar 사용하기 위해서 View가 필요
+    List<Marker> previous_marker = null; //google place에서 얻어온 약국 마커 표시
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
+                WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        setContentView(R.layout.map_activity_main);
+
+        previous_marker = new ArrayList<Marker>();
+
+        handle_btn = (Button) findViewById(R.id.handle);
+        edit = (EditText) findViewById(R.id.edit);
+
+        //약국 찾기 버튼 눌렀을때(마커 생성)
+        Button button = (Button)findViewById(R.id.pharm_btn);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPlaceInformaiton(currentPosition);
+            }
+        });
+
+        mLayout = findViewById(R.id.layout_main);
+
+        locationRequest = new LocationRequest()
+                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+                .setInterval(UPDATE_INTERVAL_MS)
+                .setFastestInterval(FASTEST_UPDATE_INTERVAL_MS);
+
+
+        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
+
+        builder.addLocationRequest(locationRequest);
+
+
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+
+        parser.edit = (EditText)findViewById(R.id.edit);
+        parser.text = (TextView)findViewById(R.id.result);
+
+        // 홈으로 이동하는 버튼 객체 생성
+        ImageButton btn_home = findViewById(R.id.gohome);
+
+        // 홈 버튼 onclicklistener 생성
+        btn_home.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                // 버튼을 누르면 메인화면으로 이동
+                Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+            }
+
+        });
+
+    }
+    ~~~
