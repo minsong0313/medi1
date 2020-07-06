@@ -415,7 +415,7 @@ public void settingTypebtn(){
         startActivity(intent.addFlags(FLAG_ACTIVITY_NEW_TASK));
     }
 ~~~
-6)FormMainActivity.java 폴더에서 Intent로 넘어온 값과 일치하는 조건들을 Json파일에서 찾아 배열로 저장한 후에 어댑터로 결과를 넘겨주는 과정을 처리할 FormSearchActivity.java 폴더를 생성한다.   
+2)FormMainActivity.java 폴더에서 Intent로 넘어온 값과 일치하는 조건들을 Json파일에서 찾아 배열로 저장한 후에 어댑터로 결과를 넘겨주는 과정을 처리할 FormSearchActivity.java 폴더를 생성한다.   
 ##### 색상, 모양, 제형 버튼으로 검색한 것인지, 식별 표시로 검색한 것인지 구분
 구분하여 서로 다른 메서드를 실행해준다.   
 ~~~java
@@ -493,7 +493,6 @@ public void settingTypebtn(){
  ##### 식별 표시로 검색한 경우
  1)식별 표시 앞, 뒤 중 하나만 입력해도 올바른 검색 결과를 나오게 하기 위해서 3가지 경우로 나누었다.   
  2)해당하는 의약품의 정보를 보여주기 위한 json파싱 방법은 위와 동일하다.   
- 
  ~~~java
  //json에서 조건에 맞는 것 검색(식별자) 3가지.
     public void marksearchJson(){
@@ -541,4 +540,107 @@ public void settingTypebtn(){
                     }
                 }//10. 표시뒤만
 ~~~
- 
+ 3)list에 배열로 결과를 저장하고 FormMyAdapter.java 폴더를 생성한 후에 넘겨준다.   
+ ##### 검색 결과 Recyclerview로 띄어주기
+ 1)비트맵 방식으로 이미지를 띄워주었던 2-4-1 약 이름으로 검색 기능의 !!!!!!!!!!!!!!!!와 다르게 Glide로 이미지를 변환한다. 다른 부분만 다르고 동일하다.     
+ 2)출력된 리스트 중에 상세보기를 원하는 의약품을 클릭했을 시 보여지는 페이지는 2-4-3 약 상세보기 기능에서 설명한다.   
+~~~java
+public class FormMyAdapter extends RecyclerView.Adapter<FormMyAdapter.MyViewHolder>{
+    private static final String sort = "form";
+
+    private String drugString;
+    private ArrayList<FormDrug> mList;
+    private LayoutInflater mInflate;
+    private Context mContext;
+    private String data = null;
+    private Intent intent;
+    private String searchString;
+
+    FormMyAdapter(Context context, ArrayList<FormDrug> mList) {//생성자를 context와 배열로 초기화해줌
+        this.mList = mList;
+        this.mInflate = LayoutInflater.from(context);
+        this.mContext = context;
+    }
+
+    @NonNull
+    @Override
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = mInflate.inflate(R.layout.list_item, parent, false);
+        final MyViewHolder viewHolder = new MyViewHolder(view);
+
+        //최초 view에 대한 list item에 대한 view를 생성함.
+        //이 onBindViewHolder친구한테 실질적으로 매칭해주는 역할을 함.
+        return viewHolder;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
+        Glide.with(holder.itemView)
+                .load(mList.get(position).getImage())
+                .into(holder.list_image);
+
+        holder.tv_name.setText(mList.get(position).getDrugName());
+        holder.tv_company.setText(mList.get(position).getCompany());
+        holder.tv_className.setText(mList.get(position).getClassName());
+        holder.tv_etcOtcName.setText(mList.get(position).getEtcOtcName());
+
+        //해당하는 holder를 눌렀을 때 intent를 이용해서 상세정보 페이지로 넘겨줌
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                new Thread(new Runnable() { //파싱을 이용했기 때문에 스레드가 필요하다. 오래 걸리기 때문에 background에서 처리해줘야함
+                    @Override
+                    public void run() {
+
+                        // TODO Auto-generated method stub
+                        //알고싶은 약의 상세정보를 누르면 그 약의 이름을 받아와 다시 파싱을 시작함
+                        //그렇기 때문에 약의 이름을 drugString에 저장해준 후 그 이름을 getXmlData()의 메서드로 넘겨줌
+                        drugString = mList.get(position).getDrugName();
+                        data = getXmlData(drugString);//drugString에 해당하는 데이터를 string형식으로 가져와 data변수에 저장해줌
+
+                        intent = new Intent(mContext, LookupActivity.class);//intent를 초기화해주는 코드
+
+
+                        //앞에는 key값, 뒤에는 실제 값
+                        intent.putExtra("Drug", drugString);//drug의 이름을 넘겨줌
+                        intent.putExtra("data", data);//파싱한 데이터들을 "data"의 키로 넘겨줌
+                        intent.putExtra("image", mList.get(position).getImage());
+                        intent.putExtra("sort", sort);
+
+
+                        //전체의 intent를 실제로 넘겨주는 코드.
+                        mContext.startActivity(intent.addFlags(FLAG_ACTIVITY_NEW_TASK));
+                    }
+                }).start();
+            }
+
+        });
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return (mList != null ? mList.size() : 0);
+    }
+
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+
+        public ImageView list_image;
+        public TextView tv_name;
+        public TextView tv_company;
+        public TextView tv_etcOtcName;
+        public TextView tv_className;
+        public View mView;
+
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+            mView = itemView;
+            list_image = itemView.findViewById(R.id.list_image);  // 이름 list_image??
+            tv_name = itemView.findViewById(R.id.tv_name);
+            tv_company = itemView.findViewById(R.id.tv_company);
+            tv_etcOtcName = itemView.findViewById(R.id.tv_etcOtcName);
+            tv_className = itemView.findViewById(R.id.tv_className);
+        }
+    }
+~~~
