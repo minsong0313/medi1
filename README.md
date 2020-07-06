@@ -389,6 +389,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
  ~~~ 
  
 <div>
-<img src="https://user-images.githubusercontent.com/57400913/86553418-a8193000-bf85-11ea-8c6d-da8c8a4f3d24.png" width="40%">
-<img src="https://user-images.githubusercontent.com/57400913/86553428-b1a29800-bf85-11ea-9750-3571cd1ebdb2.png" width="40%">
+<img src="https://user-images.githubusercontent.com/57400913/86553887-f5e26800-bf86-11ea-9c12-fc412c5b63fc.png" width="20%">       
+<img src="https://user-images.githubusercontent.com/57400913/86553418-a8193000-bf85-11ea-8c6d-da8c8a4f3d24.png" width="20%">
+<img src="https://user-images.githubusercontent.com/57400913/86553428-b1a29800-bf85-11ea-9750-3571cd1ebdb2.png" width="20%">
 </div>
